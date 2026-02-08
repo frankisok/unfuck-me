@@ -1,0 +1,6 @@
+<div class="{{toggleContainerCssClass()}}">
+    <label for="media-type-toggle" class="toggle-button-label sm">
+        <input #checkbox class="toggle-button" id="media-type-toggle" type="checkbox" [attr.data-on]="dataOn"
+            [attr.data-off]="dataOff" (click)="toggle()">
+    </label>
+</div>

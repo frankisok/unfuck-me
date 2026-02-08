@@ -1,0 +1,12 @@
+<div class="{{deviceTypeNOrientation}} move-modal-container">
+    <h6>Move Tag</h6>
+
+    <div class="tag-body">
+        <lib-recursive-tag-tree [tags]="tags" [isSelected]="isSelected" (selectedItem)="selectedItem($event)"></lib-recursive-tag-tree>
+    </div>
+
+    <div class="button-group">
+        <button class="amp-cancel-sm" (click)="close()">Cancel</button>
+        <button class="amp-save-sm" (click)="moveTag()">Confirm</button>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div>
+    <span class="ml-3 p-1">
+        <span *ngFor="let part of nestedPath.split(breadCrumbSeparator); let i = index">
+          <ng-container *ngIf="i > 0">{{breadCrumbSeparator}}</ng-container>
+          <div (click)="mobileOnPartClick(part)" class="breadcrumb-cards-nav-back {{isTheLastItem(part)}}">{{ part }}</div>
+        </span>
+     </span>
+    <!-- <span class="p-1 ml-3 fa fa-times-circle" style="font-size: 20px; float: inline-end; margin-right: 20px"
+        (click)="closeCards()">
+    </span> -->
+</div>
+<div class="children-as-cards d-flex flex-wrap justify-content-center">
+    <div *ngFor="let listItem of listItems; let i = index"
+        class="card card-container-main {{listItem.isSelected() ? 'selected' : ''}}"
+        (click)="listItemOnClick($event, listItem)">
+        <div class="card-body p-2 justify-content-center text-center align-content-center">
+            <!-- change to icons and text -->
+            <div class="card-title">{{listItem.getDisplayText()}}</div>
+        </div>
+        <!-- Recursive component -->
+        <!-- <lib-mobile-nav-card-items *ngIf="listItem.hasNestedItems() && listItem.isSelected()"
+            [nestedDepth]="nestedDepth +1" [listItems]="listItem.getNestedItems()" 
+            (itemClick)="listItemOnClick($event, listItem)">
+        </lib-mobile-nav-card-items> -->
+    </div>
+</div>

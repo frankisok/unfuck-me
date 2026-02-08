@@ -1,0 +1,35 @@
+@import '../../../scss/colors';
+
+.autocomplete-container {
+    position: relative;
+    width: 100%;
+}
+
+.autocomplete-suggestions {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    padding: 0.2rem 0.5rem !important;
+
+    background-size: 12px;
+    background-position: calc(100% - 10px) 8px;
+    background-repeat: no-repeat;
+    background-color: #efefef;
+    color: black;
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: $secondaryColor;
+}
+
+.error-text {
+    color: $warningColor;
+}

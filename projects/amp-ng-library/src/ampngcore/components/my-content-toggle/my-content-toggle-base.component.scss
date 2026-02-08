@@ -1,0 +1,97 @@
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.toggle-button-label {
+  position: relative;
+  width: 260px;
+  height: 30px;
+  background-color: rgb(48 48 51);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  //box-shadow: 0px 0px 3px dimgrey;
+  margin-top: 12px;
+
+  .toggle-button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    font-weight: 500;
+
+    &::before, &::after {
+      position: absolute;
+      height: 100%;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: background-color 0.1s ease-in-out;
+    }
+
+    &::before {
+      content: attr(data-on);
+      //border: 1px green solid;
+      background-color: var(--atmosphere-main-color);
+      color: rgb(0, 0, 0);
+      font-weight: 800;
+    }
+
+    &::after {
+      content: attr(data-off);
+      left: 130px;
+    }
+
+    &:checked {
+      &::before {
+        background-color: transparent;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+      }
+
+      &::after {
+        background-color: var(--atmosphere-main-color);
+        color: rgb(0, 0, 0);
+        font-weight: 800;
+
+      }
+    }
+  }
+}
+
+.media_toggle_with_search {
+  width: 536px;
+}
+
+.server-search__wrapper._media_toggle {
+  .server-search__input {
+    height: 30px;
+  }
+
+  .server-search__button {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1110px) {
+  .toggle-button-label.sm{
+    width: 230px;
+    .toggle-button::after {
+      left: 115px;
+    }
+  }
+}
+@media (max-width: 960px) {
+  .toggle-button-label.sm{
+    width: 160px;
+    .toggle-button::after {
+      left: 80px;
+    }
+  }
+}

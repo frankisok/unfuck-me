@@ -1,0 +1,33 @@
+<div class="root-container">
+    <div *ngIf="!(delegateType === DELEGATE_TYPE_OTHER)" class="media-type-toggle-container">
+        <app-media-type-toggle></app-media-type-toggle>
+    </div>
+    <div
+        class="master-view-list {{(hasTabs && !hasToolbar) ? 'master-view-list--has-tabs': ''}} {{(!hasTabs && hasToolbar) ? 'master-view-list--has-toolbar': ''}} {{(hasTabs && hasToolbar) ? 'master-view-list--has-tabs-and-toolbar': ''}}">
+        <div class="server-search__wrapper" style="margin-left:10px">
+            <div *ngIf="!(delegateType === DELEGATE_TYPE_OTHER)">
+                <input id="search-content" type="text" class="server-search__input" [placeholder]="'Search' | translate"
+                    [(ngModel)]="searchFilter" [ngModelOptions]="{standalone: true}"
+                    (keyup)="eventDelegate.updateSearchTerm(searchFilter)" [style]="{'margin-left': '12px'}" />
+            </div>
+            <div *ngIf="delegateType === DELEGATE_TYPE_OTHER">
+                <img src="{{assetsService.searchIcon}}" class="img-fluid server-search__icon">
+                <input type="text" class="server-search__input" [(ngModel)]="searchFilter" [ngModelOptions]="{standalone: true}"
+                    [placeholder]="searchText | translate" [tabIndex]="0"
+                    (keyup.enter)="eventDelegate.updateSearchTerm(searchFilter)" />
+                <button class="server-search__button" id="server-search__button"
+                    (click)="eventDelegate.updateSearchTerm(searchFilter)">{{ 'GO' | translate }}
+                </button>
+            </div>
+        </div>
+
+        <div cdkDropListGroup [cdkDropListGroupDisabled]="!isDragAvailable" class="list-item-container">
+            <div cdkDropList [cdkDropListData]="listItems" (cdkDropListDropped)="onDrop($event)">
+                <app-master-view-list-item cdkDrag *ngFor="let listItem of listItems; let i = index" [listItem]="listItem"
+                    (itemsReordered)="onReorderUpdateMasterView($event)" [nestedDepth]="1" [eventDelegate]="eventDelegate" [index]="i"
+                    [delegateType]="delegateType" [className]="className" [cdkDragDisabled]="!listItem.isSelected()">
+                </app-master-view-list-item>
+            </div>
+        </div>
+    </div>
+</div>

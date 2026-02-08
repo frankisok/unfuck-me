@@ -1,0 +1,33 @@
+
+.container-fluid {
+    position: fixed;
+}
+.page-structure-navbar {
+    // height: 4vh;
+    // margin-bottom: 2vh;
+    height: 50px;
+    margin-bottom: 12px;
+    min-height: 50px;
+}
+
+.page-structure-content {
+    height: 100%;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+}
+
+.page-structure-content.page-structure-content--admin {
+    height: calc(100vh - 77px);
+    margin-top: 2vh;
+}
+
+.page-structure-footer {
+    height: 50px;
+}
+
+// Remove inherited margin on footer
+.page-structure-footer ul.row {
+    margin-bottom: 0;
+    width: 100%;
+}

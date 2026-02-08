@@ -1,0 +1,370 @@
+<div class="page-structure-content">
+    <div class="{{ libraryCssClassName }}">
+        <!-- common to both audio and video library -->
+        <div
+            class="col-xl-{{ masterViewCol }} col-{{ masterViewCol }} atmosphere-workspace__master-view {{
+                isMobile ? 'mobile-view' : ''
+            }}"
+        >
+            <div class="media-type-toggle-container" *ngIf="showLibraryMediaToggle">
+                <app-media-type-toggle></app-media-type-toggle>
+            </div>
+            <div class="server-search__container" *ngIf="!isMyContentNotImplemented">
+                <div class="server-search__wrapper">
+                    <img
+                        *ngIf="currentTab === 'Search results'"
+                        src="{{ assetsService.searchHiIcon }}"
+                        class="img-fluid server-search__icon"
+                    />
+                    <img
+                        *ngIf="currentTab !== 'Search results'"
+                        src="{{ assetsService.searchIcon }}"
+                        class="img-fluid server-search__icon"
+                    />
+                    <input
+                        type="text"
+                        class="server-search__input"
+                        [(ngModel)]="serverSearchPhrase"
+                        [ngModelOptions]="{ standalone: true }"
+                        [placeholder]="'Search' | translate"
+                        [tabIndex]="0"
+                        (keyup.enter)="queryServerSearch()"
+                    />
+                    <button class="server-search__button" id="server-search__button" (click)="queryServerSearch()">
+                        {{ 'GO' | translate }}
+                    </button>
+                </div>
+            </div>
+
+            <app-master-view-list
+                [listItems]="masterViewList"
+                [eventDelegate]="this"
+                [hasToolbar]="hasToolbar"
+                [hasTabs]="true"
+                [dirtyTimeStamp]="dirtyTimeStamp"
+                *ngIf="!isMobile && !isMyContentNotImplemented"
+            ></app-master-view-list>
+            <lib-generic-tool-bar *ngIf="!isMyContentNotImplemented">
+                <div class="popovers-container">
+                    <app-action-popover
+                        *ngIf="selectedItem && (selectedItemIsTagFolder() || selectedItemIsTag())"
+                        [open]="addPopoverCtrl.isOpen"
+                        [placement]="'top'"
+                        className="add-playlist-popover"
+                    >
+                        <lib-add-content-form
+                            [eventDelegate]="this"
+                            [mediaType]="mediaType"
+                            [selectedItem]="selectedItem"
+                        ></lib-add-content-form>
+                    </app-action-popover>
+                    <app-action-popover
+                        *ngIf="selectedItem && selectedItemIsTag()"
+                        [open]="editPopoverCtrl.isOpen"
+                        [placement]="'top'"
+                        className="add-playlist-popover"
+                    >
+                        <lib-edit-content-form
+                            [eventDelegate]="this"
+                            [selectedItem]="selectedItem"
+                        ></lib-edit-content-form>
+                    </app-action-popover>
+                </div>
+                <div *ngIf="isContentMode()" class="toolbar-container" (click)="onAddProductOrContentItem()">
+                    <app-master-view-toolbar
+                        [className]="getToolbarStateStyle()"
+                        [toolbarActions]="getToolbarActions()"
+                        [selectedItem]="selectedItem"
+                    ></app-master-view-toolbar>
+                </div>
+            </lib-generic-tool-bar>
+        </div>
+        <div
+            class="col-xl-{{ bodyCol }} col-{{ bodyCol }} atmosphere-workspace__detail-view {{
+                isMobile ? 'mobile-view' : ''
+            }}"
+        >
+            <!-- back button -->
+            <lib-mobile-nav
+                [listItems]="masterViewList"
+                [eventDelegate]="this"
+                *ngIf="isMobile && !detailViewProps.playFullView"
+                [isMenuOpen]="detailViewProps.isMenuOpen"
+            >
+            </lib-mobile-nav>
+            <div class="toggle-container" *ngIf="showLibraryMediaToggle && configService.showContentOwnerToggles">
+                <div class="{{ deviceTypeNOrientation }} my-content-toggle-container" *ngIf="isContentMode()">
+                    <app-my-content-toggle-base [contentType]="contentType"></app-my-content-toggle-base>
+                </div>
+            </div>
+
+            <ng-container *ngIf="!isMyContentNotImplemented; else notImplementedTemplate">
+                <div
+                    class="atmosphere-workspace__detail-header {{ detailViewProps.isMenuOpen ? 'mobile-menu' : '' }}"
+                    *ngIf="(!detailViewProps.showCards || !isMobile) && detailViewProps.isDetailView"
+                >
+                    <div
+                        class="{{
+                            isMobile && showSearchbar ? 'd-block' : 'd-flex'
+                        }} justify-content-between align-items-center"
+                    >
+                        <!-- this is common on both audio / video -->
+                        <div class="d-flex align-items-center">
+                            <img class="detail-view-icon" *ngIf="!isMobile" [src]="detailViewIcon" />
+                            <span
+                                class="atmosphere-workspace__detail-header-title"
+                                [ngClass]="{ 'draft-text': isDraft(selectedItem) }"
+                            >
+                                <!-- <span *ngIf="!isMobile">{{ currentTab }}</span> -->
+                                <!-- split by > -->
+                                <span>
+                                    <span
+                                        *ngFor="
+                                            let part of detailViewProps.openPath.split(breadCrumbSeparator);
+                                            let i = index
+                                        "
+                                    >
+                                        <ng-container *ngIf="i > 0">{{ breadCrumbSeparator }}</ng-container>
+                                        <div
+                                            (click)="mobileOnPartClick(part)"
+                                            class="breadcrumb-cards-nav-back {{ deviceType }} {{ isTheLastItem(part) }}"
+                                            [ngClass]="{ 'draft-text': isDraft(selectedItem) }"
+                                        >
+                                            {{ part }}
+                                        </div>
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="atmosphere-workspace__detail-header-description mr-auto">
+                                ({{ masterViewListMediator.getFilteredItemsWithSearchWord(this) }})
+                            </span>
+                        </div>
+
+                        <div>
+                            <div class="media-search__container d-flex flex-row-reverse">
+                                <library-action-menu
+                                    *ngIf="hasCallBackComponent && (allTags || tags)"
+                                    class="float-right"
+                                    [hasCallBackComponent]="hasCallBackComponent"
+                                >
+                                </library-action-menu>
+
+                                <div
+                                    *ngIf="isVideoLibrary && !isMobile && !products && !externalView.isSelected"
+                                    class="btn-group btn-group-toggle"
+                                    data-toggle="buttons"
+                                >
+                                    <label
+                                        class="btn active"
+                                        [class.active]="listType === 'grid'" id="grid"
+                                        (click)="handleDetailListViewTypeToggle($event)"
+                                    >
+                                        <img class="img--grid" src="{{ assetsService.gridDarkIcon }}" />
+                                        <img class="img--grid" src="{{ assetsService.gridLightIcon }}" />
+                                        <input type="radio" name="listDisplayOptions" autocomplete="off" checked />
+                                    </label>
+                                    <label
+                                        class="btn btn-list"
+                                        [class.active]="listType === 'list'" id="list"
+                                        (click)="handleDetailListViewTypeToggle($event)"
+                                    >
+                                        <img class="img--list" src="{{ assetsService.listDarkIcon }}" />
+                                        <img class="img--list" src="{{ assetsService.listLightIcon }}" />
+                                        <input type="radio" name="listDisplayOptions" autocomplete="off" />
+                                    </label>
+                                </div>
+
+                                <!-- common to both -->
+                                <input
+                                    *ngIf="!isMobile"
+                                    type="text"
+                                    class="media-search__input"
+                                    [(ngModel)]="searchFilter"
+                                    [ngModelOptions]="{ standalone: true }"
+                                    (ngModelChange)="onSearchChange($event)"
+                                    [placeholder]="'Search' | translate"
+                                    [tabIndex]="0"
+                                />
+                                <div
+                                    *ngIf="isMobile && !showSearchbar"
+                                    class="mobile-search-button"
+                                    (click)="toggleMobileSearchBar()"
+                                >
+                                    <img src="{{ assetsService.searchIcon }}" class="" />
+                                </div>
+                                <div
+                                    *ngIf="isMobile && showSearchbar"
+                                    class="d-flex justify-content-center mobile-search"
+                                    id="mobile-device-searchbar"
+                                >
+                                    <input
+                                        type="text"
+                                        class="media-search__input w-100 rounded-2 mobile"
+                                        [(ngModel)]="searchFilter"
+                                        [ngModelOptions]="{ standalone: true }"
+                                        (ngModelChange)="onSearchChange($event)"
+                                        [placeholder]="'Search' | translate"
+                                        [tabIndex]="0"
+                                    />
+                                </div>
+                                <div class="publish-button-container" *ngIf="isContentMode">
+                                    <button
+                                        *ngIf="isShowingPublishButton()"
+                                        style="border-radius: 0.25rem"
+                                        class="btn btn-primary amp-draft-button"
+                                        type="button"
+                                        (click)="publishObject()"
+                                    >
+                                        Publish
+                                    </button>
+                                </div>
+
+                                <!-- common to both -->
+                                <div
+                                    class="btn-container mb-1"
+                                    *ngIf="!accountInfo.contentMode && !showSearchbar && !usingLocalApi"
+                                >
+                                    <div>
+                                        <button
+                                            id="tog-btn"
+                                            type="button"
+                                            name="Products"
+                                            class="amp-toggle-btn filter {{ isMobile ? 'mobile' : 'desktop' }}"
+                                            (click)="toggleProductFilterPanel()"
+                                        >
+                                            {{ 'Show Products' | translate }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- common to both -->
+                    <div class="product-filter-container" *ngIf="!accountInfo.contentMode && !usingLocalApi">
+                        <amp-product-filter
+                            [ngStyle]="{ 'max-width': isMobile ? '100vw' : '70vw' }"
+                            [productFilterType]="productFilterType"
+                            [mediaType]="mediaType"
+                            (allProductsBundleIds)="getAllBundleIds($event)"
+                            (selectedProductsBundleIds)="applyProductFilter($event)"
+                        ></amp-product-filter>
+                    </div>
+                </div>
+                <div
+                    class="atmosphere-workspace__detail-view__content-table {{
+                        detailViewProps.isMenuOpen ? 'mobile-menu' : ''
+                    }} {{ configService.device.deviceType }}"
+                    *ngIf="detailViewProps.isDetailView"
+                >
+                    <div *ngIf="accountInfo.contentMode">
+                        <amp-video-lib-detail
+                            *ngIf="isVideoLibrary"
+                            [contentItems]="this.filteredTabContent"
+                            [artistsMap]="artistsMap"
+                            [listType]="listType"
+                            [multiSelectListMediator]="multiSelectListMediator"
+                            [modalDelegate]="this"
+                            [searchFilter]="searchFilter"
+                            [showHeader]="showHeader"
+                            (updateLibrary)="updateLibrary()"
+                            [damObject]="damObject"
+                            [videoChannels]="videoChannels"
+                            [albums]="albums"
+                            [series]="series"
+                            [products]="products"
+                            [videos]="videos"
+                            [categories]="categories"
+                            [allProducts]="allProducts"
+                            [headerDelegate]="this"
+                            [contentItemIsInEditMode]="contentItemIsInEditMode"
+                            [headerTemplate]="headerTemplate"
+                            [isProductTab]="isProductTab"
+                            [isVideoLibrarySelected]="isVideoLibrary"
+                        [audioLibraryDelegate]="this"
+                    >
+                        </amp-video-lib-detail>
+                        <amp-audio-lib-detail
+                            *ngIf="isAudioLibrary"
+                            [contentItems]="filteredTabContent"
+                            [artistsMap]="artistsMap"
+                            [multiSelectListMediator]="multiSelectListMediator"
+                            [modalDelegate]="this"
+                            [searchFilter]="searchFilter"
+                            [audioLibraryDelegate]="this"
+                            [showHeader]="showHeader"
+                            (updateLibrary)="updateLibrary()"
+                            [damObject]="damObject"
+                            [audioChannels]="audioChannels"
+                            [albums]="albums"
+                            [series]="series"
+                            [categories]="categories"
+                            [products]="products"
+                            [songs]="songs"
+                            [allProducts]="allProducts"
+                            [headerDelegate]="this"
+                            [contentItemIsInEditMode]="contentItemIsInEditMode"
+                            [headerTemplate]="headerTemplate"
+                            [isAudioChannelSelected]="isAudioChannelSelected"
+                            [isProductTab]="isProductTab"
+                        >
+                        </amp-audio-lib-detail>
+                    </div>
+                    <div *ngIf="!accountInfo.contentMode">
+                        <amp-video-lib-detail
+                            *ngIf="isVideoLibrary"
+                            [contentItems]="this.filteredTabContent"
+                            [artistsMap]="artistsMap"
+                            [listType]="listType"
+                            [multiSelectListMediator]="multiSelectListMediator"
+                            [modalDelegate]="this"
+                            [audioLibraryDelegate]="this"
+                        [searchFilter]="searchFilter"
+                            [showHeader]="showHeader"
+                            [contentProgress]="contentProgress"
+                            [isVideoLibrarySelected]="isVideoLibrary"
+                        (updateLibrary)="updateLibrary()"
+                        >
+                        </amp-video-lib-detail>
+                        <amp-audio-lib-detail
+                            *ngIf="isAudioLibrary"
+                            [contentItems]="filteredTabContent"
+                            [artistsMap]="artistsMap"
+                            [multiSelectListMediator]="multiSelectListMediator"
+                            [modalDelegate]="this"
+                            [searchFilter]="searchFilter"
+                            [audioLibraryDelegate]="this"
+                            [showHeader]="showHeader"
+                            [contentProgress]="contentProgress"
+                            (updateLibrary)="updateLibrary()"
+                        >
+                        </amp-audio-lib-detail>
+                    </div>
+                </div>
+
+                <!-- <div
+                    class="atmosphere-workspace__detail-view__content-table {{
+                        detailViewProps.isMenuOpen ? 'mobile-menu' : ''
+                    }} {{configService.device.deviceType}}"
+                >
+                <ng-container #externalViewContainer></ng-container>
+                </div> -->
+            </ng-container>
+
+            <ng-template #notImplementedTemplate>
+                <div class="not-yet-implemented-container d-flex align-items-center justify-content-center h-100">
+                    <div class="text-center">
+                        <h2>Feature Not Yet Implemented</h2>
+                        <p>My Library is coming soon. Please check back later.</p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <!-- <div *ngIf="viewSpinner && !isMobile" class="detail-view-spinner col-xl-{{ bodyCol }} col-{{ bodyCol }} atmosphere-workspace__detail-view">
+        <i class="fa fa-spinner fa-spin __disable-ui"></i>
+    </div> -->
+    <app-spinner *ngIf="disableUI || (isMobile && viewSpinner)"></app-spinner>
+    <ng-container #mobileSongPreviewContainer></ng-container>
+    <!-- <mobile-song-preview (mobilePreview)="handlePreviewCallback($event)" *ngIf="!detailViewProps.closePlayerPreview"></mobile-song-preview> -->
+    <lib-mobile-nav-wrapper *ngIf="detailViewProps.isMenuOpen"></lib-mobile-nav-wrapper>
+</div>

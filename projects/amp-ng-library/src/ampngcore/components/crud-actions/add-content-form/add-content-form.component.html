@@ -1,0 +1,15 @@
+<div>
+    <div class="amp-form add-playlist-form">
+        <p class="amp-form__header add-playlist-form__header">{{ 'CREATE NEW TAG' }}</p>
+        <div class="form-group">
+            <label class="form-control-label" for="name">{{ 'Title' }}</label>
+            <input type="text" class="form-control form-control-danger" [(ngModel)]="name">
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="amp-cancel-sm"  (click)="cancel()">{{ 'cancel' }}</button>
+            <button type="button" class="amp-save-sm" (click)="addTag()">{{ 'save' }}</button>
+        </div>
+    </div>
+</div>
+

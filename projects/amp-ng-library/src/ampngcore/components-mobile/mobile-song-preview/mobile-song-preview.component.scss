@@ -1,0 +1,142 @@
+.audio-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #1b1c1de8;
+  // padding: 10px;
+  border-radius: 8px;
+  bottom: 0;
+  position: fixed;
+  z-index: 102;
+}
+.audio-container.full-view{
+  height: 100vh;
+  top: 0;
+}
+
+.full-view-back-button {
+  // top: 100px;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  .fa.fa-times {
+    position: relative;
+    margin-right: 10px;
+    left: 98%;
+  }
+}
+
+.audio-container:hover {
+  cursor: pointer;
+}
+
+.album-art {
+  width: 35px;
+  height: 35px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.audio-img-center img{
+  width: 100%;
+  height: auto;
+  position: relative;
+  // margin-bottom: 135px;
+  max-width: 500px;
+  max-height: 500px;
+}
+.audio-img-center{
+  top: 50px;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+@media (max-height: 667px) {
+  .full-view-back-button{
+    top: 80px;
+  }
+  .audio-img-center img{
+    // top:100px;
+    max-height: 300px;
+  }
+  .audio-img-center{
+    top: 30px;
+    position: relative;
+    margin-bottom: 50px;
+  }
+}
+@media screen and (min-height: 668px) {
+  // .audio-img-center img {
+  //   // top: 70px;
+  // }
+  
+}
+
+.full-width .fa-pause, 
+.full-width .fa-play {
+  border-radius: 50%;
+  border: 1px solid;
+  padding: 12px;
+}
+
+.audio-details {
+  // display: flex;
+  // flex-direction: column;
+  flex-grow: 1;
+  // margin: 10px;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-container {
+  flex-grow: 1;
+}
+
+.song-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.artist-name {
+  margin: 0;
+}
+
+.play-pause-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.progress-container {
+  height: 3px;
+  background: #848383;
+  width: 100%;
+  margin-top: 5px;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #ffffff;
+  width: 0;
+}
+
+.fa-play,
+.fa-pause {
+  color: #ffffff;
+}
+
+.video-screen {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 4px;
+  background: black;
+}

@@ -1,0 +1,18 @@
+* {box-sizing: border-box}
+
+.dropdown-item {
+    white-space: normal;
+}
+
+.btn-dropdown{
+    border: none;
+    background-color: transparent;
+    border-radius: 5px;
+    &:hover{
+        background-color: rgb(91, 91, 94);
+    }
+    &:disabled{
+        opacity: 0.5;
+        background-color: transparent;
+    }
+}

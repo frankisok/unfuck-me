@@ -1,0 +1,136 @@
+@import "../screen-resolution.scss";
+$master-view-bg: #3F4043;
+$detail-view-bg-gradient: linear-gradient(#27282C, #191A1D);
+
+.atmosphere-workspace-container {
+    height: 100%;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__master-view {
+    background-color: $master-view-bg;
+    padding-right: 0;
+    padding-left: 0;
+    // display: flex;
+    // flex-flow: column;
+    // height: calc(100% - 180px);
+    // overflow-y:scroll;
+    // overflow-x: hidden;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__master-view .atmosphere-workspace__master-view__toolbar-action-components {
+    position: absolute;
+    margin-bottom: 5.5vh;
+    bottom: 0;
+    left: 15.225334957369062vh;
+}
+
+.atmosphere-workspace__master-view, .atmosphere-workspace__detail-view {
+    max-height: 100%;
+}
+
+.atmosphere-workspace__detail-view.atmosphere-workspace--edit-mode #dropdownMenuButton {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.atmosphere-workspace__detail-view {
+    background-image: $detail-view-bg-gradient;
+    padding: 0;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__detail-view .atmosphere-workspace__detail-view__content-table {
+    height: calc(100% - 60px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+    padding: 0 1em;
+}
+.atmosphere-workspace-container .atmosphere-workspace__detail-view .atmosphere-workspace__detail-view__content-table.b {
+    padding-bottom: 100px;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__detail-view .atmosphere-workspace__detail-view__content-table-no-header {
+    // height: calc(100% - 50px);
+    height: 100%;
+    // overflow-y: scroll;
+    overflow: scroll;
+    display: block;
+    padding: 0 1em;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__detail-view .atmosphere-workspace__detail-view__content-table-playlist {
+    height: calc(100% - 273px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+    padding: 0 1em;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__detail-view .atmosphere-workspace__detail-view__content-table-programme {
+    height: calc(100% - 180px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+    padding: 0 1em;
+}
+
+.atmosphere-workspace__detail-header {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    justify-content: space-between;
+}
+
+.atmosphere-workspace__detail-header-title, .atmosphere-workspace__detail-header-description {
+    font-size: 1.5em;
+    font-weight: 500;
+    vertical-align: middle;
+    cursor: default;
+    @include screenResolution(TABLET_LANDSCAPE_1) {
+        font-size: 0.9em;
+    }
+    @include screenResolution(TABLET_PORTRAIT_1) {
+        font-size: 0.8em;
+    }
+}
+
+.atmosphere-workspace__detail-header > div > .tab-name {
+    color: white;
+}
+
+.atmosphere-workspace__detail-header-description {
+    color: #535353;
+    margin-left: 8px;
+}
+
+
+.atmosphere-workspace__detail-header-image {
+    height: 20px;
+    margin-right: 8px;
+}
+
+.atmosphere-workspace__detail-header .dropdown-menu {
+    max-height: 85vh;
+    overflow-x: hidden;
+}
+
+.atmosphere-workspace__detail {
+    padding: 0 12px;
+    height: 900px;
+}
+
+
+.atmosphere-workspace-container .atmosphere-workspace__detail-view .atmosphere-workspace__detail-view__content-table {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__detail-view #licenses.atmosphere-workspace__detail-view__content-table {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+}
+

@@ -1,0 +1,485 @@
+// width1380
+@import "./screen-resolution.scss";
+.system-playlist-programme-detail,
+.system-playlist-detail{
+    margin: 0 auto;
+    width: 55vw;
+    max-height: 80vh;
+    height: 80vh;
+    right: -20vw ;
+    left: -20vw ;
+    background-color: black;
+    opacity: 1;
+    position: absolute;
+    z-index: 3;
+    background-image: linear-gradient(black, rgb(46, 46, 46));
+    overflow-y: auto;
+    overflow: hidden;
+
+    @include screenResolution(LAP_TOP_SCREENS_1){
+        width: 80vw;
+        background-color: red;
+    }
+    @include screenResolution(LAP_TOP_SCREENS_2){
+
+        width: 65vw;
+        height: auto;
+        background-color: green;
+    }
+    @media (max-width: 870px) {
+        width: 98vw !important;
+    }
+}
+
+.system-playlist-programme-detail .detail-header,
+.system-playlist-detail {
+    max-height: 50% !important;
+    height: 155px;
+    padding: 1vh;
+    overflow-y: scroll;
+    z-index: 5;
+    background-color: #3F4043 !important;
+
+
+    .system_programme_playlist-image-container {
+        display: flex;
+
+        .header-image-video {
+            height: 128px;
+            width: 256px;
+            pointer-events: none;
+        }
+        .header-image-audio {
+            max-height: 128px;
+            max-width: 128px;
+            pointer-events: none;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+}
+
+.system-playlist-programme-detail .detail-body
+{
+    width: 100%;
+    height: calc(80vh - 156px);
+    overflow: scroll;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    .card-container-main:hover {
+        opacity: .5 !important;
+        cursor: pointer;
+        border: .5 solid #313237;
+    }
+    .text-dark, .audio-counter span {
+        color: #fff !important;
+    }
+    .audio-counter > span {
+        border: 1px solid #fff;
+    }
+    .card {
+        margin-bottom: 0;
+    }
+}
+.system-playlist-programme-detail._playlist .detail-body {
+    overflow: hidden;
+}
+
+.detail-header  .system_programme_playlist-info-container {
+    height: 100%; width: 100%;
+    display: unset
+}
+
+.system_programme_playlist-text-container-body {
+    display: grid;
+}
+
+// option one
+.virtual-viewport-container{
+    background-color: #5c5c5e;
+    // height: 100%;
+    //border: 1px solid #313237;
+}
+
+// .virtual-viewport-container._playback-content {
+//     height: calc(87vh - 1px);
+// }
+
+.virtual-viewport-container._playback-content._system-user-virtual-scroll {
+    height: calc(78vh - 160px);
+}
+.virtual-viewport-container .playlist-info, .system_programme_playlist-image-description {
+    padding-left: 20px;
+}
+.playlist-text-detail {
+    font-size: small;
+    display: grid;
+    max-height: 70px !important;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-right: 20px;
+    text-align: justify;
+}
+
+.system-playlist-programme-detail,
+.system-playlist-detail,
+.detail-header,
+.playlist-image,
+.header-image-video,
+.detail-body,
+.header-image-audio{
+    border-radius: 10px;
+}
+.header-image-audio,
+.header-image-video{
+    border: 3px solid #535353;
+}
+
+.schedule-program-list {
+    height: 70px;
+    // padding-left: 1px;
+    display: inline-flex;
+    width: 100% !important;
+}
+.schedule-program-list div {
+    height: 70px;
+    img {
+        height: 70px;
+        width: 160px;
+        padding: 3px
+    }
+    // display: flex;
+    // flex: 1 7;
+}
+.schedule-program-list_first {
+    // border: 1px solid #535353;
+    border-left: #535353;
+    width:160px;
+}
+.schedule-program-list span {
+    padding-left: 10px;
+    flex: 7;
+    width:60%;
+    a {
+        width: 100%;
+    }
+}
+.my-detail-container .detail-body{
+    // height: 75vh;
+    height: 100%;
+    overflow: hidden;
+    top:3em;
+
+    // NB: IF a conflict arises, just move this to individually components
+    @media (max-height:700px) {
+        // top: 100px;
+        margin-top:3em;
+        position: relative;
+    }
+    .detail-body-schedule {
+        padding: 10px;
+        border-radius: 10px;
+    }
+    table {
+        border-radius: 10px;
+        // background-color: #313237;
+        .table-row .table-row_first{
+            padding-left: 20px;
+            width: 30%;
+        }
+        // .table-row_first, td span {
+        //     padding: 10px;
+        // }
+
+    }
+
+}
+
+// USE THIS TO HIDE TEXT OR WRAP TEXT:
+.form-group_container .col-form-label,
+.schedule-program-list span a,
+.full-width-text{
+    width: 100%;
+    -webkit-line-clamp: 2;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 11pt;
+}
+
+.back-button {
+    width: 100%;
+    height: 38px !important;
+    margin-bottom: 3px;
+}
+.fa-chevron-left {
+    cursor: pointer;
+}
+.fa-chevron-left:hover {
+    color: #535353;
+}
+.float-right > * {
+    padding-left: 10px;
+    // padding-bottom: 10px;
+}
+.edit-mode-actions{
+    background-color: #535353 !important;
+}
+
+// All detail components common styles
+.my-detail-info-container {
+    display: flex;
+    //border: 1px solid blue;
+
+    .my-detail_image-container {
+        min-height: 128px;
+        position: relative;
+        // display: flex;
+        align-items: center;
+        // justify-content: center;
+
+
+        .header-image-video,
+        .edit-image-button_video {
+            height: 128px;
+            width: 256px;
+
+        }
+
+        .header-image-audio,
+        .edit-image-button_audio  {
+            height: 128px !important;
+            width: 128px !important;
+        }
+
+        .edit-image-button_video,
+        .edit-image-button_audio {
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+        }
+
+        .edit-image-button_video:hover,
+        .edit-image-button_audio:hover {
+            opacity: .5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            background-color: black;
+            cursor: pointer;
+        }
+
+
+    }
+    .my-detail_image-container.sm {
+        flex: .1;
+        width: 150px;
+        height: fit-content;
+    }
+
+    .my-detail-text-container {
+        flex: 1.8;
+        padding-left: 10px;
+        //border: 1px red solid;
+        .form-group_container {
+            // padding-top: 10px;
+            .col-form-label {
+                padding-top: 0 !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: darkgray;
+            }
+        }
+        .full-width-text {
+            width: 80%;
+            span {
+                color: #838383;
+            }
+        }
+        .form-group .text-area {
+            // height: 100px !important;
+            overflow: auto;
+        }
+        textarea {
+            height: inherit;
+            resize: none;
+            // background-color: #6B6B6E;
+            padding: 10px;
+            font-size: 11px;;
+            // width: 60vh;
+        }
+        input {
+            // background-color: #6B6B6E;
+            padding: 10px;
+            font-size: small;
+        }
+        .col-sm-10 {
+            flex: 0 0 83.33333333%;
+            // max-width: 75.333333%;
+        }
+
+    }
+}
+.my-detail-container {
+    //background-color: #8d8d8d;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 15px;
+    font-family: "Raleway", sans-serif !important;
+    padding: 10px 0;
+}
+
+.edit-mode-name-input{
+    width: 100%;
+    line-height: 18px;
+}
+.btn:hover {
+    background-color: rgb(91, 91, 94);
+}
+
+// reducing teh space between input field in the edit mode
+.form-group {
+    margin-bottom: 2px;
+}
+
+.start-hour-container {
+    padding-top: 2px;
+    display: flex;
+    top: 152px !important;
+    display: inline-flex;
+    position: absolute;
+    left: calc(25% + 281px);
+    width: calc(75% - 281px);
+    .btn {
+        padding: 2px 10px;
+    }
+    .dropdown {
+        height: 30px;
+        top: 1px;
+        // flex: .3;
+        // width:600px
+
+    }
+    .row {
+        padding-left: 20px;
+        flex: .8;
+        // width: 1000px;
+    }
+    .order-xl-2 {
+        margin: -12px;
+    }
+}
+
+.start-hour-container.audio {
+    left: calc(25% + 154px);
+    width: calc(75% - 154px);
+}
+.start-hour-container.sm, .start-hour-container.audio.sm {
+    top: 210px;
+}
+
+.start-hour-container.sc, .start-hour-container.audio.sc {
+    top: 165px !important;
+}
+
+.start-time {
+    height: 26px;
+    border-radius: 6px;
+}
+
+.text-left:disabled, .text-left {
+    background-color: rgb(63, 64, 66);
+    color: white;
+}
+
+.my-detail-container.disable_events, .disable_events {
+    pointer-events: none;
+    opacity: .5;
+}
+
+.start-hour-container .form-group label {
+    color: darkgray;
+}
+
+// .virtual-viewport-container._system-user-virtual-scroll {
+//     min-height: 62vh !important;
+//     height: 80vh;
+// }
+
+@media (min-height: 1040px) {
+
+    // .system-playlist-programme-detail .detail-body,
+    // .virtual-viewport-container {
+    //     height: calc(75vh - 156px);
+    // }
+
+    .my-detail-container .detail-body {
+        height: 90vh;
+    }
+
+    // .cdk-virtual-scroll-content-wrapper {
+    //     padding-bottom: 100px;
+    // }
+
+    // .virtual-viewport-container._system-user-virtual-scroll._audio {
+    //     height: calc(77vh - 175px) ;
+    // }
+    
+    .virtual-viewport-container._system-user-virtual-scroll._product-showing {
+        height: calc(77vh - 275px) ;
+    }
+}
+
+
+// inherit 100% height from parent
+app-playlist-detail-body,
+app-system-playlist-detail,
+app-virtual-scroll-viewport {
+    height: 100%;
+    display: block;
+}
+
+
+app-playlist-detail-body {
+
+    // add margin to the last item to show the last item when scrolling
+    app-virtual-scroll-viewport {
+        .card.card-container-main.last-item {
+            margin-bottom: 75px;
+        }
+
+        .library_card_container .card.card-container-main.last-item {
+            margin-bottom: 0;
+        }
+
+        // reduce the margin of the last item when filter container is enabled
+        .virtual-viewport-container._system-user-virtual-scroll._product-showing .card.card-container-main.last-item {
+            margin-bottom: 30px;
+        }
+
+        .virtual-viewport-container._system-user-virtual-scroll,
+        .virtual-viewport-container._playback-content {
+            .cdk-virtual-scroll-viewport.virtual-viewport.cdk-virtual-scroll-orientation-vertical {
+                background: #4F5158;
+            }
+        }
+    }
+}
+
+@media (max-height: 1500px) {
+    app-virtual-scroll-viewport .virtual-viewport-container._playback-content  .card.card-container-main.last-item{
+        margin-bottom: 50px;
+    }
+}

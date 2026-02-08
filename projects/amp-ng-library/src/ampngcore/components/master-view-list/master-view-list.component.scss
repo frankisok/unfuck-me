@@ -1,0 +1,26 @@
+.master-view-list {
+    padding-top: 48px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+.master-view-list.master-view-list--has-tabs {
+    padding-top: 20px;
+    height: calc(100% - 50px);
+}
+
+.master-view-list.master-view-list--has-toolbar {
+    height: calc(100% - 50px);
+    margin-bottom: 50px;
+}
+
+.master-view-list.master-view-list--has-tabs-and-toolbar {
+    padding-top: 12px!important;
+    height: calc(100% - 120px);
+    margin-bottom: 50px;
+}
+
+.is-tags-list {
+    padding-bottom: 0;
+    padding-top: 0;
+}

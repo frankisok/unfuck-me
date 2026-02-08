@@ -1,0 +1,37 @@
+<div class="container-fluid vh-100 no-gutters root-container">
+    <div class="row bg-nav page-structure-navbar {{(configService.isMobile()) ? 'mobile' : ''}}">
+        <div class="col-xl-3 col-3 my-auto logo d-xl-block d-md-none d-sm-block">
+            <!-- <a href="http://www.atmosphere365.com/atmosphere365">
+                <img src="../assets/img/atmosphere365_logo_gradient_neg_cr_35px.png" alt="Atmosphere Logo"
+                     class="img-fluid logo"/>
+            </a> -->
+        </div>
+        <div class="col-xl-9 col-9 p-0">
+            <nav class="col-12 navbar navbar-expand-md navbar-expand-sm  navbar-light bg-faded amp-text h-100">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!--            Tabs switch between admin and client tabs for admin/user mode-->
+                    <div>
+                        <div>
+                            <ul class="navbar-nav mr-auto d-flex justify-content-center">
+                                <li class="nav-item  p-0" >
+                                    <a class="amp-tab" routerLink="/library/audio" routerLinkActive="active"
+                                      >{{ 'audio library' | translate }}</a>
+                                </li>
+                                <li class="nav-item  p-0">
+                                    <a class="amp-tab" routerLink="/library/video" routerLinkActive="active"
+                                      >{{ 'video library' | translate }}</a>
+                                </li>
+                            </ul>                            
+                        </div>
+                        <div>                
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="page-structure-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

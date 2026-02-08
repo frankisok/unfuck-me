@@ -1,0 +1,58 @@
+<div class="audio-container d-flex justify-content-center pl-2 pr-2 {{isFullControlsVisible ? 'full-view' : ''}}"
+    *ngIf="url && isAudio">
+    <div class="audio-details pt-1 h-100">
+        <!-- back button -->
+        <div class="d-flex justify-content-between mt-2" *ngIf="isFullControlsVisible">
+            <span class="fa fa-chevron-down" (click)="showFullView()"></span>
+            <span class="fa fa-times" (click)="closePreviewPlayer()"></span>
+        </div>
+        <div class="audio-img-center d-flex justify-content-center mt-2" *ngIf="isFullControlsVisible">
+            <img src="{{imgPath}}" alt="Album Art" class="album-art">
+        </div>
+
+        <!-- if the view is small -->
+        <div class="details-header">
+            <img src="{{imgPath}}" alt="Album Art" class="album-art" *ngIf="!isFullControlsVisible"
+                (click)="showFullView()">
+            <div class="text-container" (click)="showFullView()">
+                <p class="song-title" style="font-size: 12px;">{{getName(contentItem.name) | truncate:35}}</p>
+                <p class="artist-name text-dark">{{ artistName | truncate:35 }}</p>
+            </div>
+            <button (click)="togglePlayPause()" class="play-pause-button" *ngIf="!isFullControlsVisible">
+                <span *ngIf="!isPlaying" class="fa fa-play"></span>
+                <span *ngIf="isPlaying" class="fa fa-pause"></span>
+            </button>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" [style.width.%]="currentProgress"></div>
+        </div>
+        <!-- current time and duration -->
+        <div class="d-flex justify-content-between mt-2" *ngIf="isFullControlsVisible">
+            <span class="text-small">{{previewCurTime}}</span>
+            <span class="text-small">{{previewDuration}}</span>
+        </div>
+        <div class="d-flex justify-content-center mt-2 full-width" *ngIf="isFullControlsVisible">
+            <button (click)="togglePlayPause()" class="play-pause-button">
+                <span *ngIf="!isPlaying" class="fa fa-play"></span>
+                <span *ngIf="isPlaying" class="fa fa-pause"></span>
+            </button>
+        </div>
+    </div>
+    <audio #audio [src]="url" (timeupdate)="updateProgress()"></audio>
+</div>
+
+<div class="audio-container d-flex justify-content-center pl-2 pr-2 {{isFullControlsVisible ? 'full-view' : ''}}"
+    *ngIf="url && !isAudio" [ngStyle]="{'z-index': 9999}">
+    <div class="audio-details pt-1 h-100">
+        <!-- back button -->
+        <div class="full-view-back-button" *ngIf="isFullControlsVisible">
+            <span class="fa fa-chevron-down" (click)="showFullView()"></span>
+        </div>
+        <div class="close-preview-player" *ngIf="!isFullControlsVisible">
+            <span class="fa fa-times" (click)="closePreviewPlayer()"></span>
+        </div>
+        <div class="video-preview">
+            <iframe #video [src]="url" width="100%" height="200px" class="video-screen my-2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+    </div>
+</div>

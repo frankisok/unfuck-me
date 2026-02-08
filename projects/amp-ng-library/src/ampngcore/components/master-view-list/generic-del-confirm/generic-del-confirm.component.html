@@ -1,0 +1,8 @@
+<div class="amp-form del-playlist-confirm" *ngIf="!!config">
+    <p class="amp-form__header del-playlist-folder-confirm__header">{{deleteProps.description | translate}}</p>
+    <p style="color:white;">{{ 'Delete' | translate}} {{deleteProps.name}}?</p>
+    <div class="btn-group">
+        <button type="button" class="amp-btn-tiny-2 amp-btn--secondary-2" (click)="onCancel()">{{ 'cancel' | translate }}</button>
+        <button type="button" class="amp-btn-tiny-2 amp-btn--danger-2" (click)="onConfirm()">{{ 'delete' | translate }}</button>
+    </div>
+</div>

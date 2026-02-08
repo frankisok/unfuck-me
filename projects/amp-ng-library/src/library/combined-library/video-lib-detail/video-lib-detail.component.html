@@ -1,0 +1,22 @@
+<div class="video-library-detail-container" [ngClass]="{ 'video-library-detail-container-with-header': showHeader }">
+    <ng-container *ngIf="headerTemplate && showHeader && damObject">
+        <ng-container *ngTemplateOutlet="headerTemplate; context: {headerDelegate: headerDelegate}"></ng-container>
+      </ng-container>
+        <app-virtual-scroll-viewport
+        *ngIf="contentItems"
+        [delegate]="this"
+        [artistsMap]="artistsMap"
+        [scrollContent]="contentItems"
+        [contentProgress]="contentProgress"
+        [searchFilter]="searchFilter"
+        [mediaType]="VIDEO_MEDIA_TYPE"
+        [multiSelectListMediator]="multiSelectListMediator"
+        [itemSize]="virtualScrollItemSize"
+        [listType]="listType"
+        [isLibrary]="true"
+        [products]="products"
+        [damObject]="damObject"
+        [isProductTab]="isProductTab"
+        [isVideoLibrarySelected]="isVideoLibrarySelected"
+        ></app-virtual-scroll-viewport>
+</div>

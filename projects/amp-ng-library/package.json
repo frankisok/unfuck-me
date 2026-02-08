@@ -1,0 +1,65 @@
+{
+    "name": "amp-ng-library",
+    "author": "Atmosphere Dev Team",
+    "description": "Amp Angular Library",
+    "version": "7.6.41",
+    "license": "Proprietary",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [
+        "angular",
+        "library",
+        "ng",
+        "amp"
+    ],
+    "scripts": {
+        "build": "ng build amp-ng-library",
+        "watch": "ng build amp-ng-library --watch --configuration development",
+        "build:prod": "ng build amp-ng-library --prod",
+        "test": "ng test amp-ng-library"
+    },
+    "peerDependencies": {
+        "@angular/animations": "^19.2.14",
+        "@angular/cdk": "18.2.14",
+        "@angular/common": "^19.2.14",
+        "@angular/compiler": "^19.2.14",
+        "@angular/core": "^19.2.14",
+        "@angular/forms": "^19.2.14",
+        "@angular/localize": "^19.2.14",
+        "@angular/platform-browser": "^19.2.14",
+        "@angular/platform-browser-dynamic": "^19.2.14",
+        "@angular/platform-server": "^19.2.14",
+        "@angular/router": "^19.2.14",
+        "@ng-bootstrap/ng-bootstrap": "17.0.0",
+        "@ng-select/ng-select": "14.0.0",
+        "@ngx-translate/core": "15.0.0",
+        "@popperjs/core": "^2.0.0",
+        "bootstrap": "5.3.3",
+        "font-awesome": "^4.7.0",
+        "lodash": "^4.17.21",
+        "lossless-json": "4.0.1",
+        "rxjs": "^7.8.1",
+        "typescript": "5.5.4",
+        "zone.js": "~0.15.1"
+    },
+    "dependencies": {
+        "tslib": "^2.0.0"
+    },
+    "sideEffects": false,
+    "devDependencies": {
+        "@angular/cdk": "18.2.14",
+        "@angular/common": "^19.2.14",
+        "@angular/compiler-cli": "^19.2.14",
+        "@angular/core": "^19.2.14",
+        "@ng-bootstrap/ng-bootstrap": "17.0.0",
+        "@ng-select/ng-select": "14.0.0",
+        "@ngx-translate/core": "15.0.0",
+        "@popperjs/core": "^2.0.0",
+        "@types/wicg-file-system-access": "^2023.10.5",
+        "bootstrap": "5.3.3",
+        "lossless-json": "4.0.1",
+        "tslib": "^2.0.0"
+    }
+}

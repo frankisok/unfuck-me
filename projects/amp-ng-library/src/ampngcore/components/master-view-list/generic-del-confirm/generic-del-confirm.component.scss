@@ -1,0 +1,61 @@
+.del-playlist-confirm .btn-group {
+    margin-top: 10px;
+}
+
+.amp-btn-tiny-2.amp-btn--primary-2, .amp-btn-lg-2.amp-btn--primary-2 {
+    background-color: #3075E6;
+    border-color: #3075E6;
+}
+.amp-btn-tiny-2.amp-btn--secondary-2, .amp-btn-lg-2.amp-btn--secondary-2 {
+    background-color: #24252A;
+}
+
+.amp-btn-tiny-2 {
+    height: 20px;
+    width: 90px;
+
+    line-height: 14px;
+    font-size: 12px;
+    text-align: center;
+    color: #FFFF;
+
+    border-radius: 10px;
+    margin: 5px;
+    border: 1px solid;
+
+}
+
+.amp-btn-lg-2.amp-btn--secondary-2,
+.disabled {
+    background-color: rgb(47, 48, 51);
+    border: none;
+}
+
+button.amp-btn-lg-2,
+.disabled {
+    margin-right: 8px;
+    border-radius: 6px;
+    text-transform: none;
+}
+button.amp-btn-lg-2:hover {
+    opacity: .7;
+}
+.disabled{
+    font-size: 12px;
+    height: 28px;
+    vertical-align: middle;
+    min-width: 90px;
+    cursor: unset;
+    color: white;
+    opacity: .7;
+}
+
+.amp-btn-tiny-2.amp-btn--danger-2 {
+    background-color: #dc3545;
+    border: 1px solid transparent;
+}
+
+.amp-btn--danger-2 {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}

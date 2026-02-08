@@ -1,0 +1,8 @@
+<div class="dropdown {{disabled ? '__disabled' : ''}} {{!!containerCssName ? containerCssName : ''}}">
+    <div class="btn btn-secondary dropdown-toggle {{className}}" type="button" id="generic-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ selectedItem !== undefined ? getDisplayName() : placeholder }}
+    </div>
+    <div class="dropdown-menu {{!!dropDownContainerCssName ? dropDownContainerCssName : ''}}" aria-labelledby="generic-dropdown">
+        <a class="dropdown-item" *ngFor="let m of items; let i = index" (click)="selectItem(m, i)">{{ bindName ? m[bindName] : m?.name || m }}</a>
+    </div>
+</div>

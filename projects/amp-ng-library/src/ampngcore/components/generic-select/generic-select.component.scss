@@ -1,0 +1,17 @@
+#generic-dropdown {
+    text-align: left;
+    background-color: var(--product-tab-color-color-four);
+    min-height: 38px;
+    width: 267px;
+}
+.dropdown-toggle::after {
+    float: right;
+    display: flex;
+    align-items: center;
+    top: var(--order-page-default-pixels);
+    position: relative;
+}
+.__disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

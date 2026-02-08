@@ -1,0 +1,91 @@
+.loader {
+    /* ─── CONFIG ─────────────────────────────────────────── */
+    --size: 100px;
+    /* overall spinner diameter */
+    --radius: calc(var(--size)/2 - var(--dot-max)/2);
+    /* distance from center to dot center */
+    --dots: 8;
+    /* how many dots */
+    --dot-max: 24px;
+    /* size of first (largest) dot */
+    --dot-min: 8px;
+    /* size of last (smallest) dot */
+    --dot-step: calc((var(--dot-max) - var(--dot-min)) / (var(--dots) - 1));
+    /* ─────────────────────────────────────────────────────── */
+
+    width: var(--size);
+    height: var(--size);
+    position: relative;
+    display: inline-block;
+    animation: rotation 2s linear infinite;
+    box-sizing: border-box;
+}
+
+@keyframes rotation {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader .dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    border-radius: 50%;
+    transform-origin: 0 0;
+}
+
+.loader .dot:nth-child(1) {
+    --angle: 0deg;
+    width: var(--dot-max);
+    height: var(--dot-max);
+}
+
+.loader .dot:nth-child(2) {
+    --angle: calc(360deg/var(--dots) * 1);
+    width: calc(var(--dot-max) - var(--dot-step) * 1);
+    height: calc(var(--dot-max) - var(--dot-step) * 1);
+}
+
+.loader .dot:nth-child(3) {
+    --angle: calc(360deg/var(--dots) * 2);
+    width: calc(var(--dot-max) - var(--dot-step) * 2);
+    height: calc(var(--dot-max) - var(--dot-step) * 2);
+}
+
+.loader .dot:nth-child(4) {
+    --angle: calc(360deg/var(--dots) * 3);
+    width: calc(var(--dot-max) - var(--dot-step) * 3);
+    height: calc(var(--dot-max) - var(--dot-step) * 3);
+}
+
+.loader .dot:nth-child(5) {
+    --angle: calc(360deg/var(--dots) * 4);
+    width: calc(var(--dot-max) - var(--dot-step) * 4);
+    height: calc(var(--dot-max) - var(--dot-step) * 4);
+}
+
+.loader .dot:nth-child(6) {
+    --angle: calc(360deg/var(--dots) * 5);
+    width: calc(var(--dot-max) - var(--dot-step) * 5);
+    height: calc(var(--dot-max) - var(--dot-step) * 5);
+}
+
+.loader .dot:nth-child(7) {
+    --angle: calc(360deg/var(--dots) * 6);
+    width: calc(var(--dot-max) - var(--dot-step) * 6);
+    height: calc(var(--dot-max) - var(--dot-step) * 6);
+}
+
+.loader .dot:nth-child(8) {
+    --angle: calc(360deg/var(--dots) * 7);
+    width: var(--dot-min);
+    height: var(--dot-min);
+}
+
+/* position each dot around the circle */
+.loader .dot {
+    transform:
+        rotate(var(--angle)) translate(var(--radius)) translate(-50%, -50%);
+}

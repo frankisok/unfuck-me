@@ -1,0 +1,29 @@
+<div class="audio-library-detail-container" [ngClass]="{ 'audio-library-detail-container-with-header': showHeader }">
+    <div>
+        <ng-container *ngIf="headerTemplate && showHeader && damObject">
+            <ng-container *ngTemplateOutlet="headerTemplate; context: {headerDelegate: headerDelegate}"></ng-container>
+        </ng-container>
+        <div class="d-flex flex-row align-items-stretch flex-nowrap heading">
+            <div class="card-artist">{{ 'Song' | translate }}</div>
+            <div *ngIf="!isMobile" class="audio-counter"></div>
+            <div *ngIf="!isMobile" class="card-genres" style="padding-left: 40px">{{ 'Genre' | translate }}</div>
+            <div *ngIf="!isMobile" class="card-duration" style="padding-left: 50px">{{ 'Duration' | translate }}</div>
+            <div *ngIf="!isMobile" class="card-bpm text-nowrap" style="padding-left: 50px">{{ 'Bpm' | translate }}</div>
+            <div class="action-td"></div>
+        </div>
+    </div>
+        <app-virtual-scroll-viewport
+        [delegate]="this"
+        [artistsMap]="artistsMap"
+        [scrollContent]="contentItems"
+        [contentProgress]="contentProgress"
+        [searchFilter]="searchFilter"
+        [mediaType]="AUDIO_MEDIA_TYPE"
+        [multiSelectListMediator]="multiSelectListMediator"
+        [itemSize]="VIRTUAL_SCROLL_ITEM_SIZE"
+        [listType]="VIRTUAL_SCROLL_VIEW_TYPE_LIST"
+        [isLibrary]="true"
+        [isAudioChannelSelected]="isAudioChannelSelected"
+        [isProductTab]="isProductTab"
+    ></app-virtual-scroll-viewport>
+</div>

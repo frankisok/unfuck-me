@@ -1,0 +1,14 @@
+<div class="{{toggleContainerCssClass()}}">
+    <label for="media-type-toggle" class="toggle-button-label sm">
+        <input #checkbox class="toggle-button" id="media-type-toggle" type="checkbox" [attr.data-on]="dataOn"
+            [attr.data-off]="dataOff" (click)="toggle()">
+    </label>
+    <div class="{{deviceTypeNOrientation}} server-search__container" *ngIf="hasSearchBar">
+        <div class="server-search__wrapper _media_toggle">
+            <img src="{{assetsService.searchIcon}}" class="img-fluid server-search__icon">
+            <input type="text" class="server-search__input" [placeholder]="'Search' | translate" [tabIndex]="0"
+                (keyup)="updateSearchTerm()" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" />
+            <button class="server-search__button" (click)="updateSearchTerm()">{{ 'GO' | translate }}</button>
+        </div>
+    </div>
+</div>

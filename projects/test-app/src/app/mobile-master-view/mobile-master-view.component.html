@@ -1,0 +1,9 @@
+<div class="mobile-master-view-nav">
+    <nav class="d-block">
+        <div *ngFor="let navItem of masterViewTabs; let i = index" class="nav-item {{navItem.isActive ? 'active' : ''}} ">
+            <div class="nav-link m-2 p-1 {{navItem.isActive ? 'active' : ''}} " (click)="listItemOnClick($event, navItem)">
+                {{navItem.name}}
+            </div>
+        </div>
+    </nav>
+</div>

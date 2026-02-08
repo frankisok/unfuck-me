@@ -1,0 +1,11 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/amp-ng-library",
+  "assets": [
+    { "input": "./assets", "glob": "**/*", "output": "assets" }
+  ],
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "allowedNonPeerDependencies": ["@angular-devkit/schematics", "@angular/cdk"]
+}

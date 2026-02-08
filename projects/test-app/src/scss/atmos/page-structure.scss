@@ -1,0 +1,58 @@
+
+.container-fluid {
+    position: fixed;
+}
+.page-structure-navbar {
+    height: 50px;
+    min-height: 50px;
+    
+    &.mobile {
+        margin-bottom: 0;
+        border-bottom: 1px solid #9c9b9b;
+        
+        .logo {
+            margin-top: 3px !important;
+        }
+    }
+}
+
+.page-structure-content {
+    height: calc(100% - 50px);
+    width: 100%;
+    max-width: 100vw;
+}
+
+.page-structure-content.page-structure-content--admin {
+    height: calc(100vh - 50px);
+}
+
+.page-structure-footer {
+    height: 50px;
+}
+
+// Remove inherited margin on footer
+.page-structure-footer ul.row {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.edit-mode-actions__edit-overlay-master-view {
+    margin-top: 50px !important;
+}
+.edit-mode-actions__edit-overlay-top {
+    height: 50px !important;
+}
+@media (max-width: 1200px) {
+    .edit-mode-actions__edit-overlay-master-view {
+        width: 25% !important;
+    }
+}
+
+#navbarDropdown {
+    // max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+}

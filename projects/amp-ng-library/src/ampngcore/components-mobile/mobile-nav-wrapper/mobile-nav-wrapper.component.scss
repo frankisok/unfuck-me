@@ -1,0 +1,29 @@
+.mobile-master-view-nav {
+    height: 100vh;
+    // overflow: scroll;
+    position: fixed;
+    z-index: 104;
+    background: #3f4043;
+    top: 0;
+    width: 81%;
+}
+
+.mobile-master-view-nav nav{
+    top: 65px;
+    position: relative;
+    border-top: 1px solid gray;
+}
+
+.nav-item.active {position: relative;
+    border-left: 5px solid #17181b
+}
+.nav-link {
+    height: 55px;
+    justify-content: flex-start;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.nav-link .active {
+    font-weight: bold;
+}

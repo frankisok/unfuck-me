@@ -1,0 +1,25 @@
+.draft-text {
+    color: rgb(238 35 13);
+}
+
+.ready-to-publish-text {
+    color: rgb(255 147 0);
+}
+
+.amp-draft-button:hover,
+.amp-draft-button {
+    background-color: rgb(238 35 13) !important;
+    border-color: rgb(238 35 13) ;
+
+}
+
+.amp-ready-to-publish-button {
+    background-color: rgb(255 147 0) !important;
+    border-color: rgb(255 147 0);
+}
+
+
+.amp-draft-button:hover,
+.amp-ready-to-publish-button:hover {
+    opacity: .9;
+}

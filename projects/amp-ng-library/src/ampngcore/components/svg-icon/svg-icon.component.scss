@@ -1,0 +1,15 @@
+
+.disable #shuffle2.svgContainer,
+.disable #loop.svgContainer {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.disable span.movie-film {
+    opacity: var(--film-text-span-opacity) !important;
+}
+
+// Ensures that .svgContainer has an additional class appended
+.disable .svgContainer[class*=" "] {
+    opacity: var(--film-icon-opacity) !important;
+}

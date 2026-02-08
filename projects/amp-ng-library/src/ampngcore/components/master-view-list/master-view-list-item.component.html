@@ -1,0 +1,60 @@
+<div *ngIf="!isMyContentDelegate()" class="master-view-list__list-item {{getListItemStyleState()}}">
+    <div class="master-view-list__list-item__container {{(this.nestedDepth === 1) ? 'master-view-list__list-item__container--lg' : ''}}"
+        (click)="listItemOnClick($event)" [ngStyle]="listItemDepthPadding[1]">
+        <!-- ICON -->
+        <div class="master-view-list__list-item__img_container">
+            <img *ngIf="isListItemPrefixImage()" class="master-view-list__list-item__img_prefix {{getIconClassName()}}" [src]="getListItemPrefixIcon()" />
+            <i *ngIf="isListItemPrefixIcon()" class="fa {{getListItemPrefixIcon()}} master-view-list__list-item__fa__prefix" aria-hidden="true"></i>
+        </div>
+        <!-- DISPLAY TEXT LIBRARY -->
+        <span class="master-view-list__list-item__display-text"
+        [ngClass]="{'draft-text': getDraftColor()}">
+        {{listItem.getDisplayText()}}
+    </span>
+
+        <!-- CHEVRON -->
+        <i class="fa {{getListItemPostfixIcon()}} master-view-list__list-item__fa__postfix" aria-hidden="true"></i>
+    </div>
+    <div class="master-view-list__list-item__nested-container {{(this.nestedDepth === 1) ? 'master-view-list__list-item__nested-container--scrolling' : ''}}"
+        *ngIf="listItemIsCollapseOpen()">
+        <div class="master-view-list__list-item__nested" *ngFor="let nestedItem of listItem.getNestedItems(); index as i">
+            <app-master-view-list-item [index]="i" [listItem]="nestedItem" [eventDelegate]="eventDelegate" [isDashboard]="isDashboard" [isDebugMode]="isDebugMode" [nestedDepth]="nestedDepth + 1">
+            </app-master-view-list-item>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isMyContentDelegate() && listItem.showItemInSearch" class="master-view-list__list-item {{getListItemStyleState()}}" cdkDropListGroup [cdkDropListGroupDisabled]="!listItem.isSelected()"
+    >
+    <div class="master-view-list__list-item__container" (click)="listItemOnClick($event)" [ngStyle]="listItemDepthPadding[2]">
+
+        <!-- ICON -->
+        <div class="master-view-list__list-item__img_container">
+            <img *ngIf="isListItemPrefixImage()" class="master-view-list__list-item__img_prefix {{getIconClassName()}}" [src]="getListItemPrefixIcon()" />
+            <i *ngIf="isListItemPrefixIcon()" class="fa {{getListItemPrefixIcon()}} master-view-list__list-item__fa__prefix" aria-hidden="true"></i>
+        </div>
+
+        <!-- DISPLAY TEXT PLAYBACK CONTENT -->
+        <span class="master-view-list__list-item__display-text"
+              [ngClass]="{
+                      'draft-text' : isDraftColourEnabled(),
+                      'ready-to-publish-text' : configService.accountInfo.isAdmin && !listItem.isFolder && listItem.getInnerModel().status === READY_TO_PUBLISH_STATUS
+                      }">
+            {{listItem.getDisplayText()}}
+        </span>
+
+         <!-- CHEVRON -->
+        <i class="fa {{getListItemPostfixIcon()}} master-view-list__list-item__fa__postfix" aria-hidden="true"></i>
+    </div>
+
+<!--     NESTED ITEMS-->
+    <div *ngIf="listItemIsCollapseOpen()"cdkDropList [cdkDropListData]="listItem.getNestedItems()" (cdkDropListDropped)="onDrop($event)">
+        <app-master-view-list-item cdkDrag *ngFor="let nestedItem of listItem.getNestedItems(); let i = index"
+            [listItem]="nestedItem" [nestedDepth]="nestedDepth + 1" [eventDelegate]="eventDelegate" [index]="i"
+            [delegateType]="delegateType" (itemsReordered)="onReorderUpdateMasterView($event)"
+            [cdkDragDisabled]="!listItem.isSelected()"
+            >
+        </app-master-view-list-item>
+    </div>
+</div>
+

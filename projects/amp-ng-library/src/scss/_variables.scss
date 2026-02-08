@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+$body-bg:           $backgroundColor;
+$brand-primary:     $primaryColor;
+
+$body-color: $primaryColor;
+$body-color-inverse: invert($body-color);
+$link-color: $primaryColor;
+
+$font-family-base: Raleway;
+$headings-font-family: Raleway;
+
+$btn-font-weight: bold;
+
+$amp-align : "justify-content-lg-start";
+
+$input-height: 30px;
+
+$table-border-color:  rgb(102, 102, 102);
+
+$dropdown-min-width: 200px;

@@ -1,0 +1,22 @@
+
+<div *ngIf="products" id="products-panel-body">
+    <button id="left" (click)="leftScroll()">
+        <img src="{{assetsService.chevronRightIcon}}" class="left-arrow">
+    </button>
+    <div class="playlist-products-panel" id="panel-outer-body">
+        <div *ngIf="products.length > 0" id="products-container">
+            <div *ngFor="let product of products" class="product-card-area">
+                <div class="product-container" (click)="clickProductCard(product)">
+                    <div class="product-card atmos-card
+                            {{isActiveProduct(product) ? 'atmos-card__active' : ''}}"
+                         [ngStyle]="{'background-image': 'url('+ getProductImage(product) + ')'}"
+                    [ngbTooltip]="product.name">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button id="right" (click)="rightScroll()">
+        <img src="{{assetsService.chevronRightIcon}}" class="right-arrow">
+    </button>
+</div>

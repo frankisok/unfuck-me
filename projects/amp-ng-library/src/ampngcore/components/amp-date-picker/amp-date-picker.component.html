@@ -1,0 +1,16 @@
+<div class="input-group">
+    <input [style.color]="'black'" class="form-control" placeholder="Select Date" [value]="displayedDate()"
+        [readonly]="true" />
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary calendar" type="button" (click)="toggleDatepicker()">
+            <i class="fa fa-calendar"></i>
+        </button>
+    </div>
+
+    <div *ngIf="showDatepicker" [ngClass]="containerStyle">
+        <ngb-datepicker [(ngModel)]="model" [showWeekNumbers]="false" [displayMonths]="1" [minDate]="minDate" 
+            (ngModelChange)="dateChanged($event)" [appDynamicHostListener]="showDatepicker"
+            (clickOutsideListenerTags)="closeCalendar($event)">
+        </ngb-datepicker>
+    </div>
+</div>

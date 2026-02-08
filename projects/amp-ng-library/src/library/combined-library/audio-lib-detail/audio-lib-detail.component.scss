@@ -1,0 +1,58 @@
+.audio-library-detail-container {
+    overflow-y: hidden;
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.heading {
+    font-size: 0.9em;
+    color: #535353;
+    font-weight: 300;
+    padding-right: 12px;
+    padding-bottom: 4px;
+}
+
+.card-artist {
+    width: 50%;
+    cursor: default;
+}
+
+.card-genres {
+    width: 25%;
+    cursor: default;
+}
+
+.card-bpm {
+    width: 10%;
+    cursor: default;
+}
+
+.card-duration {
+    width: 10%;
+    cursor: default;
+}
+
+.action-td {
+    width: 5%;
+}
+
+.audio-counter {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.audio-counter > span {
+    flex: 0 0 35px;
+    text-align: center;
+    line-height: 35px;
+    border: 1px solid #838383;
+    color: #838383;
+    font-weight: bolder;
+    padding: 0 2px;
+}

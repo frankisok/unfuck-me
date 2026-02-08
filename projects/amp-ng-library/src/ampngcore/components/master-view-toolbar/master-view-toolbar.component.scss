@@ -1,0 +1,70 @@
+@import "../../../scss/screen-resolution.scss";
+
+.master-view-toolbar {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    padding-top: .5%;
+
+    height: 50px;
+
+    display: inline-flex;
+
+    background-color: #3F4043;
+    
+    @media (min-height:700px) {
+        // padding-top: 10px;
+    }
+    // @include screenResolution(TABLET_PORTRAIT_1) {
+    //    top: 88%;
+    // }
+    @include screenResolution(TABLET_LANDSCAPE_1) {
+        top: 83%;
+    }
+}
+
+.master-view-toolbar:first-child {
+    padding-left: 22px;
+}
+
+.master-view-toolbar .master-view-toolbar__toolbar-action {
+    padding: 2px 7.5px;
+    // margin-right: 19px;
+    // background-color: rgba(255,255,255,0.22);
+}
+
+.master-view-toolbar .master-view-toolbar__toolbar-action .master-view-toolbar__toolbar-action__image {
+    height: 18px;
+}
+
+.master-view-toolbar.master-view-toolbar--no-item-selected .master-view-toolbar__toolbar-action__del,
+.master-view-toolbar.master-view-toolbar--no-item-selected .master-view-toolbar__toolbar-action__edit,
+.master-view-toolbar__toolbar-action__del.master-view-toolbar__toolbar-action__del--disabled,
+.master-view-toolbar__toolbar-action__edit.master-view-toolbar__toolbar-action__edit--disabled,
+.master-view-toolbar__toolbar-action__add.master-view-toolbar__toolbar-action__add--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+@media (max-width:  1110px) {
+    .master-view-toolbar .master-view-toolbar__toolbar-action {
+        padding: 2px 5.5px;
+        margin-right: 12px;
+    }
+    .master-view-toolbar:first-child {
+        padding-left: 10px;
+    }
+}
+@media (max-width: 960px) {
+    .master-view-toolbar .master-view-toolbar__toolbar-action {
+        padding: 2px 5.5px;
+        margin-right: 4px;
+    }
+}
+
+
+

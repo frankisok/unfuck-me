@@ -1,0 +1,15 @@
+<div>
+    <div class="amp-form add-playlist-form">
+        <p class="amp-form__header add-playlist-form__header">{{ 'CREATE NEW PRODUCT PLAN' | translate}}</p>
+        <div class="form-group">
+            <label class="form-control-label" for="name">{{ 'Title' | translate }}</label>
+            <input type="text" class="form-control form-control-danger" [(ngModel)]="planName">
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="amp-btn-tiny-2 amp-btn--secondary-2" (click)="onCancel()">{{ 'cancel' | translate }}</button>
+            <button type="button" class="amp-btn-tiny-2 amp-btn--primary-2" (click)="onConfirm()">{{ 'save' | translate }}</button>
+        </div>
+    </div>
+</div>
+

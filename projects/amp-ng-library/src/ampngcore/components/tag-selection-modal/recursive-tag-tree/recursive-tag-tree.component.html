@@ -1,0 +1,11 @@
+<div *ngFor="let item of tags" (click)="selectedTag($event, item)">
+    <div class="parent-container">
+        <img src="{{item === isSelected ? assetsService.attributeHiIcon : assetsService.attributeIcon}}">
+        <span [ngClass]="item === isSelected ? 'selected' : ''">{{item.name}}</span>
+        <div class="children" *ngIf="isSelected === item">
+            <lib-recursive-tag-tree [tags]="item.children" [isSelected]="isSelected" (click)="childClicked($event)"
+            (selectedItem)="selectedChildTag($event)">
+            </lib-recursive-tag-tree>
+        </div>
+    </div>
+</div>

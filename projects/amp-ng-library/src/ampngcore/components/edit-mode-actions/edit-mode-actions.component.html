@@ -1,0 +1,22 @@
+<div class="edit-mode-actions">
+  <div *ngIf="editModeObservable.editMode" class="edit-mode-actions__edit-overlay-top"></div>
+  <div *ngIf="editModeObservable.editMode && !isMobile" class="edit-mode-actions__edit-overlay-master-view"></div>
+  <div *ngIf="editModeObservable.editMode && isDAMObject(editableModel) && !isMobile"
+       class="edit-mode-actions__edit-overlay-bottom"></div>
+  <div class="{{ isMobile ? 'edit-mode-actions__on-grp d-flex' : 'edit-mode-actions__on-grp d-inline-block'}}" *ngIf="editModeObservable.editMode">
+    <button class="{{isMobile ? 'amp-mobile-cancel' : getCssClassName(CANCEL_BUTTON)}}" type="button" id="editModeCancel"
+            (click)="controller.cancelEditMode()" [disabled]="editModeObservable.saveInProgress">
+      {{ 'Cancel' | translate }}
+    </button>
+    <button class="{{isMobile ? 'amp-mobile-save' : getCssClassName(SAVE_BUTTON)}}" type="button" id="editModeSave"
+            (click)="controller.saveEditMode(editableModel)"
+            [disabled]="editModeObservable.saveInProgress || !editModeObservable.saveAvailable || invalidForm">
+      {{ 'Save' | translate }}
+    </button>
+  </div>
+  <button [disabled]="editModeObservable.editMode" [ngClass]="editModeObservable.editMode ? 'btn hide' : 'btn'"
+          type="button" id="editModeToggle" (click)="controller.startEditMode(editableModel)">
+          <img class="options-img" src="{{assetsService.editIcon}}">
+  </button>
+</div>
+

@@ -1,0 +1,7 @@
+<div class="master-view-toolbar {{className}}">
+    <div *ngFor="let item of [].constructor(toolbarActions.length); let i = index">
+        <button type="button" class="btn btn-outline-secondary master-view-toolbar__toolbar-action {{toolbarActions[i].className}}" (click)="toolbarActions[i].onActionEvent()">
+            <img class="master-view-toolbar__toolbar-action__image" [src]="toolbarActions[i].icon"/>
+        </button>
+    </div>
+</div>

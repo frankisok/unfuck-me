@@ -1,0 +1,23 @@
+<div>
+    <div class="amp-form edit-playlist-form">
+        <p class="amp-form__header add-playlist-form__header">{{ 'EDIT TAG' }}</p>
+        <div class="form-group">
+            <label class="form-control-label" for="name">{{ 'Title' }}</label>
+            <input type="text" class="form-control form-control-danger" [(ngModel)]="selectedItem.getInnerModel().name">
+        </div>
+        <div *ngIf="!isRootGroup" class="form-group">
+            <label class="form-control-label" for="mediatype">{{ 'Mediatype' }}</label>
+            <select type="text" class="form-control form-control-danger" [(ngModel)]="selectedItem.getInnerModel().mediaType">
+                <option [ngValue]="0">All</option>
+                <option [ngValue]="1">Video</option>
+                <option [ngValue]="2">Audio</option>
+            </select>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="amp-cancel-sm"  (click)="cancel()">{{ 'cancel' }}</button>
+            <button type="button" class="amp-save-sm" (click)="editTag()">{{ 'save' }}</button>
+        </div>
+    </div>
+</div>
+

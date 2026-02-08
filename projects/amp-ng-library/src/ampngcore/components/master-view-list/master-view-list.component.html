@@ -1,0 +1,4 @@
+<div class="master-view-list {{(hasTabs && !hasToolbar) ? 'master-view-list--has-tabs': ''}} {{(!hasTabs && hasToolbar) ? 'master-view-list--has-toolbar': ''}} {{(hasTabs && hasToolbar) ? 'master-view-list--has-tabs-and-toolbar': ''}} {{isTagsList ? 'is-tags-list' : ''}}">
+    <app-master-view-list-item *ngFor="let listItem of listItems; let i = index" [lastItem]="i===listItems.length-1" [listItem]="listItem" [nestedDepth]="1" [eventDelegate]="eventDelegate" [index]="i" [isDashboard]="isDashboard" [isDebugMode]="isDebugMode"></app-master-view-list-item>
+    <ng-content *ngIf="hasToolbar"></ng-content>
+</div>

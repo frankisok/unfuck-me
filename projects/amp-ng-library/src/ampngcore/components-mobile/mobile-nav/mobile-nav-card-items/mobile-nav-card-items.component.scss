@@ -1,0 +1,30 @@
+.children-as-cards {
+    padding: 10px;
+    margin: 10px;
+    min-height: 100px;
+    // height: 100%;
+    overflow: scroll;
+    padding-bottom: 150px;
+}
+
+.card.card-container-main {
+    width: calc(50% - 5px);
+    height: 58px;
+}
+
+.card.card-container-main {
+    background: #17181b;
+    cursor: pointer;
+    // padding: 10px;
+    margin: 3px 2px 3px 0px;
+}
+
+.breadcrumb-cards-nav-back {
+    display: inline;
+    &.mobile {
+        cursor: pointer;
+    &::hover {
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@import "./screen-resolution.scss";
+
+// ************* start workspace ********************************
+.atmosphere-workspace-container {
+    height: 100%;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__master-view {
+    background-color: $master-view-bg;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.atmosphere-workspace__master-view {
+    max-height: 100%;
+}
+
+.atmosphere-workspace-container .atmosphere-workspace__master-view .atmosphere-workspace__master-view__toolbar-action-components {
+    position: absolute;
+    margin-bottom: 5.5vh;
+    bottom: 0;
+    left: 15.225334957369062vh;
+}
+
+.server-search__container {
+    margin-left: 28px;
+}
+
+.server-search__wrapper {
+    position: relative;
+    max-width: 318px;
+    min-width: 156px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.server-search__icon {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 5px;
+}
+
+.server-search__button {
+    position: absolute;
+    right: 1px;
+    top: 0;
+    background-color: #3075E6 !important;
+    color: #FFF;
+    border-radius: 3px !important;
+    border-width: 0;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 30px;
+    margin-right: 10px;
+
+    @include screenResolution(TABLET_LANDSCAPE_1) {
+        height: 26px;
+        padding-top: unset;
+        padding-bottom: unset;
+        width: unset;
+    }
+
+    @include screenResolution(TABLET_PORTRAIT_1) {
+        height: 26px;
+        padding-top: unset;
+        padding-bottom: unset;
+        width: unset;
+    }
+}
+
+// ************* end workspace ********************************

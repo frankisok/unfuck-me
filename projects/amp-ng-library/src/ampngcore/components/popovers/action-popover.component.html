@@ -1,0 +1,4 @@
+<ng-template #actionPopOverContent>
+    <ng-content></ng-content>
+</ng-template>
+<div popoverClass="action-popover {{className}}" [ngbPopover]="actionPopOverContent" #actionPopOver="ngbPopover" [autoClose]="false" triggers="manual" [placement]="placement" [container]="null"></div>

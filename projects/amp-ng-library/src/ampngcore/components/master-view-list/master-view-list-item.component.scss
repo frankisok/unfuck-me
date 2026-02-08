@@ -1,0 +1,154 @@
+// @import "../../../scss/publishing.scss";
+// ************************* start of draft styling ***********************
+.draft-text {
+    color: rgb(238 35 13);
+}
+
+.ready-to-publish-text {
+    color: rgb(255 147 0);
+}
+
+.amp-draft-button:hover,
+.amp-draft-button {
+    background-color: rgb(238 35 13) !important;
+    border-color: rgb(238 35 13);
+
+}
+
+.amp-ready-to-publish-button {
+    background-color: rgb(255 147 0) !important;
+    border-color: rgb(255 147 0);
+}
+
+
+.amp-draft-button:hover,
+.amp-ready-to-publish-button:hover {
+    opacity: .9;
+}
+// ************************* end of draft styling ***********************
+
+$folder-selected-bg: #313036; //#302F34;  //#27282C;//linear-gradient(#27282C, #191A1D);;///#302F34;
+$item-selected-bg: #27282C;//#302F34;
+
+.master-view-list__list-item {
+    color: #FFFFFF;
+    padding: 3px 0 3px 0;
+    opacity: 1;
+}
+.master-view-list__list-item--margin-top {
+    margin-top: 4px;
+}
+
+.master-view-list__list-item p {
+    letter-spacing: 0.4px;
+    line-height: 18px;
+    margin-bottom: 0;
+}
+
+.master-view-list__list-item__container.master-view-list__list-item__container--lg {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+.master-view-list__list-item.master-view-list__list-item--not-selected {
+    opacity: 0.6;
+}
+
+.master-view-list__list-item .master-view-list__list-item__display-text {
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: default;
+    letter-spacing: 0.4px;
+}
+
+.master-view-list__list-item.master-view-list__list-item--collapse-open {
+    background-color: var(--atmosphere-master-view-1);
+}
+
+.master-view-list__list-item.master-view-list__list-item--selected {
+    // background-color: rgb(56, 56, 56);
+    opacity: 1;
+    color: var(--atmosphere-main-color);
+ }
+
+.master-view-list__list-item__nested-container.master-view-list__list-item__nested-container--scrolling {
+    //height: 35vh;
+    //overflow-y: scroll;
+    overflow-x: hidden;
+    display: block;
+}
+
+.master-view-list__list-item__nested .master-view-list__list-item {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.master-view-list__list-item__nested .master-view-list__list-item .master-view-list__list-item__display-text {
+    font-weight: normal;
+}
+
+
+.master-view-list__list-item .master-view-list__list-item__fa__postfix {
+    float: right;
+    font-size: 10px;
+    margin-right: 14px;
+    height: 14px;
+    width: 14px;
+    opacity: 0.5;
+    margin-top: 8px;
+}
+.master-view-list__list-item .master-view-list__list-item__fa__prefix {
+    float: left;
+    font-size: 10px;
+    margin-right: 14px;
+    height: 14px;
+    width: 14px;
+    opacity: 0.5;
+    margin-top: 3px;
+}
+
+
+.master-view-list__list-item.master-view-list__list-item--selected .master-view-list__list-item__fa__postfix {
+ opacity: 1;
+}
+
+.master-view-list__list-item .master-view-list__list-item__img_prefix {
+    font-size: 1.5em;
+    height: 18px;
+    width: 18px;
+    vertical-align: middle;
+}
+
+.master-view-list__list-item .master-view-list__list-item__img_container {
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    text-align: center;
+}
+
+// Icons
+
+.master-view-list__list-item .master-view-list__list-item__img_prefix.house-ico--0 {
+    width: auto;
+    height: 16px;
+}
+
+.master-view-list__list-item .master-view-list__list-item__img_prefix.audio-artist-ico--0, .master-view-list__list-item .master-view-list__list-item__img_prefix.audio-artist-ico--1 {
+    width: auto;
+    height: 18px;
+}
+
+.folder-focused {
+    background-color: $folder-selected-bg;
+}
+
+.content-selected {
+    background-color: $item-selected-bg;
+    opacity: 1;
+}
+
+.master-view-last-item {
+    margin-bottom: 50px;
+}
+@import "../../../scss/shared.scss";

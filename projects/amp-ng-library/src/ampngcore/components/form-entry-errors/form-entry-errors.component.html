@@ -1,0 +1,9 @@
+<div class="form-control-feedback" *ngIf="control.touched && control.hasError('required')">
+    {{ 'value-required' | translate }}.
+</div>
+<div class="form-control-feedback" *ngIf="control.touched && control.hasError('minlength')">
+    {{ 'value-min-length' | translate:{minLength:minLength} }}.
+</div>
+<div class="form-control-feedback" *ngIf="control.touched && control.hasError('maxlength')">
+    {{ 'value-max-length' | translate:{maxLength:maxLength} }}.
+</div>

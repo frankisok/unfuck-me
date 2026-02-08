@@ -1,0 +1,5 @@
+<div class="{{className}} {{disable ? 'disable' : ''}}" (click)="clicked($event)">
+    <div id="{{iconName+iconIndex}}"></div>
+    <span class="{{iconName}}" *ngIf="!!iconText" style="font-size: 10px; top: -5px; position: relative; color: #fff;">{{iconText}}</span>
+    <!-- <object [data]="iconPath" type="image/svg+xml" [style.width]="size" [style.height]="size" (load)="onSvgLoad($event)" [style.padding-right]="'5px'"></object> -->
+</div>

@@ -1,0 +1,288 @@
+<!--    GRID-->
+<div class="{{ generateViewportClassName }}" *ngIf="listType === GRID_VIEW" #gridContainer>
+    <cdk-virtual-scroll-viewport
+        [itemSize]="itemSize"
+        [ngClass]="isLibrary ? 'virtual-viewport __library' : 'virtual-viewport'"
+        [minBufferPx]="isMobile ? itemBufferSize.minBufferPx * 2.5 : itemBufferSize.minBufferPx"
+        [maxBufferPx]="isMobile ? itemBufferSize.maxBufferPx * 2.5 : itemBufferSize.maxBufferPx"
+    >
+        <div
+            *cdkVirtualFor="let contentRow of gridLayoutRows; let i = index"
+            class="{{
+                contentRow.length !== this.numberOfCols
+                    ? 'd-flex align-content-around'
+                    : isMobile ? 'library-content-container pl-2 pr-2' : 'd-flex justify-content-between'
+            }} {{ i === scrollContent.length ? 'last-item __mobile' : '' }} {{isMobile ? 'mobile' : ''}}"
+        >
+            <div
+                *ngFor="let item of contentRow; let col = index"
+                class="{{ isMobile ? '' : '' }}"
+                [style.padding-right]="getRightPadding(contentRow)"
+                [ngClass]="{ 'draft-text': item.contentItem.status === DRAFT_STATUS && configService.isContentMode() }"
+            >
+                <div
+                    class="grid-card card-grid {{deviceType}}  {{
+                        getSelectedItemStyle(i * numberOfCols + col)
+                    }}"
+                    (click)="selectItem(i * numberOfCols + col, item.contentItem.identifier, item.contentItem)"
+                    tabindex="0"
+                    id="item-{{ item.index }}"
+                    (keydown)="onKeyDown($event, item.index)"
+                    [ngStyle]="(isTablet || isDeskTop) ? {} : {}"
+                >
+                    <div class="grid-image-container">
+                        <img
+                            class="grid-img"
+                            [src]="getImgForContent(item.contentItem)"
+                            (error)="assetsService.onImgError($event)"
+                        />
+                        <div
+                            *ngIf="
+                                (configService.isContentMode() && 
+                                item.contentItem.type === 1) 
+                                ||
+                                (item.contentItem.promoVideoId != null &&
+                                 item.contentItem.promoVideoId.length > 0 &&
+                                 !disablePlayPreviewOrPlay())
+                            "
+                            class="overlay-grid text-center"
+                        >
+                            <!-- In content mode: always show Info; show Play only if promo video exists -->
+                            <ng-container *ngIf="configService.isContentMode() && !isProductTab; else playButtonOnly">
+                                <div class="actions">
+                                    <img
+                                        *ngIf="item.contentItem.promoVideoId != null && item.contentItem.promoVideoId.length > 0 && !disablePlayPreviewOrPlay()"
+                                        src="{{assetsService.playCircleIcon}}"
+                                        class="img-fluid"
+                                        alt="Play preview"
+                                        (click)="showPreview(item.contentItem)"
+                                    />
+                                    <img
+                                        src="{{ assetsService.infoIcon }}"
+                                        class="info-button"
+                                        alt="Info"
+                                        role="button"
+                                        tabindex="0"
+                                        (click)="showMovieDetails(item.contentItem.id, $event)"
+                                    />
+                                </div>
+                            </ng-container>
+                            <ng-template #playButtonOnly>
+                                <img
+                                    src="{{assetsService.playCircleIcon}}"
+                                    class="img-fluid"
+                                    (click)="showPreview(item.contentItem)"
+                                />
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="one-line-truncate p-2">{{ item.contentItem.name.replace(reIndex, '') }}</div>
+                </div>
+            </div>
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>
+
+<!--LIST-->
+<div class="{{ generateViewportClassName }}" *ngIf="!products && scrollContent && listType === LIST_VIEW">
+    <cdk-virtual-scroll-viewport
+        itemSize="{{ itemSize }}"
+        [ngClass]="isLibrary ? 'virtual-viewport __library' : 'virtual-viewport'"
+        [maxBufferPx]="isMobile ? itemBufferSize.maxBufferPx * 2.5 : itemBufferSize.maxBufferPx"
+        [minBufferPx]="isMobile ? itemBufferSize.minBufferPx * 2.5 : itemBufferSize.minBufferPx"
+    >
+    <div cdkDropListGroup>
+        <div
+            *cdkVirtualFor="let item of visibleContent(); let i = index"
+            class="{{ libraryCssName }}"
+            [ngClass]="{ 'draft-text': item.contentItem['status'] === DRAFT_STATUS && configService.isContentMode() }"
+            tabindex="0"
+            id="item-{{ item.index }}"
+            (keydown)="onKeyDown($event, i)"
+            cdkDropList
+            (cdkDropListDropped)="drop($event)"
+            [cdkDropListData]="item.index"
+            cdkDropListOrientation="vertical"
+            [cdkDropListAutoScrollDisabled]="false"
+            [cdkDropListAutoScrollStep]="itemSize"
+        >
+            <div
+                class="{{deviceType}} card card-container-main {{ getSelectedItemStyle(item.index) }} {{mediaType === VIDEO_MEDIA_TYPE ? 'video' : 'audio'}}"
+                (click)="selectItem(item.index, item.contentItem['identifier'], item.contentItem)"
+                [ngStyle]="{ 'card-video p-2': mediaType === VIDEO_MEDIA_TYPE }"
+                [draggable]="isDraggable()"
+                cdkDrag
+                (cdkDragStarted)="dragStarted(item)"
+                cdkDragLockAxis="y"
+                [cdkDragDisabled]="!isInEditMode"
+                (mouseenter)="hoveredIndex = item.index"
+                (mouseleave)="hoveredIndex = null"
+            >
+            <!-- <div *cdkDragPlaceholder></div> -->
+            
+                <!--                        VIDEO-->
+                <div id="video-item" *ngIf="mediaType === VIDEO_MEDIA_TYPE" class="d-flex align-items-start">
+                    <div class="playlist-image-container play-card">
+                        <img
+                            class="img-fluid playlist-image float-left {{deviceType}}"
+                            [src]="getImgForContent(item.contentItem)"
+                            (error)="assetsService.onImgError($event)"
+                            (click)="showPreview(item.contentItem)"
+                        />
+
+                        <div class="overlay overlay-video text-center" *ngIf="!configService.isOfflineMode()">
+                            <img
+                                src="{{assetsService.playCircleIcon}}"
+                                class="img-fluid"
+                                (click)="showPreview(item.contentItem)"
+                            />
+                        </div>
+                        <div class="progress-overlay overlay overlay-video text-center" *ngIf="configService.isOfflineMode() && contentProgress?.length > 0">
+                            <lib-progress-ring
+                                [progression]="getItemProgress(item.contentItem)"
+                                [inProgress]="inProgress"
+                                [progressBackground]="progressBg"
+                                [radius]="progressRadius"
+                                [isDiscProgress]="true"
+                                (onClick)="showPreview(item.contentItem)"
+                            >
+                                <!-- <img
+                                    class="img-fluid"
+                                    src="{{assetsService.downloadCloud}}"
+                                /> -->
+                            </lib-progress-ring>
+                        </div>
+                    </div>
+                    <!--                        NAME, ARTIST, DURATION-->
+                    <div
+                        class="d-flex align-items-start flex-column playlist-info mr-auto {{
+                            isMobile ? '__mobile' : ''
+                        }}"
+                    >
+                        <div class="mb-auto">
+                            <span class="text-large">{{ item.index + 1 }}. {{ item.contentItem['name'] | truncate: truncateValue }}</span>
+                        </div>
+                        <span class="text-small secondary-card-text"
+                            >Artist : {{ artistsMap[item.contentItem['artistId']] }}
+                        </span>
+                        <span class="text-small secondary-card-text {{ isMobile ? '__mobile' : '' }}">
+                            <span *ngIf="!isMobile">Duration: </span>{{ getDuration(item.contentItem) }}
+                        </span>
+                        <span *ngIf="isVideoLibrarySelected && !isMobile" class="text-small secondary-card-text {{ isMobile ? '__mobile' : '' }}">
+                            <span>Attributes: <lib-tag-loader [item]="item.contentItem"></lib-tag-loader></span>
+                        </span>
+                        <!-- <span *ngIf="!isMobile && !isVideoLibrarySelected" class="text-small secondary-card-text {{ isMobile ? '__mobile' : '' }}">
+                            <span>Genre: </span> {{ getGenres(item.contentItem) }}
+                        </span> -->
+                    </div>
+
+                    <!-- Show movie details button -->
+                    <div
+                        class="ml-auto d-flex align-items-center info-button-wrapper"
+                        [class.hidden]="!configService.isContentMode()"
+                    >
+                        <img
+                            src="{{ assetsService.infoIcon }}"
+                            class="info-button"
+                            alt="Info"
+                            role="button"
+                            tabindex="0"
+                            (click)="showMovieDetails(item.contentItem.id, $event)"
+                        />
+                    </div>
+                </div>
+
+                <!--                        AUDIO-->
+                <div
+                    id="audio-item"
+                    *ngIf="mediaType === AUDIO_MEDIA_TYPE"
+                    class="d-flex flex-row align-items-stretch flex-nowrap"
+                >
+                    <div class="audio-counter" *ngIf="!isMobile">
+                        <span class="text-large">{{ item.index + 1 }}</span>
+                    </div>
+                    <div class="card-artist {{ isMobile ? 'mobile' : '' }}">
+                        <div class="play-card">
+                            <img
+                                class="img-fluid audio-img {{ isMobile ? 'mobile' : '' }} float-left"
+                                [src]="getImgForContent(item.contentItem)"
+                                (error)="assetsService.onImgError($event, assetsService.noteIcon)"
+                            />
+                            <div
+                                class="overlay overlay-audio {{ isMobile ? 'mobile' : '' }} text-center"
+                                *ngIf="!configService.isOfflineMode()"
+                            >
+                                <img
+                                    src="{{assetsService.playCircleIcon}}"
+                                    class="img-fluid"
+                                    (click)="showPreview(item.contentItem)"
+                                />
+                            </div>
+                            <div class="{{ deviceType }} progress-overlay overlay overlay-audio text-center {{mediaType === 2 ? 'audio-progress' : ''}}" *ngIf="configService.isOfflineMode() && contentProgress?.length > 0">
+                                <lib-progress-ring
+                                    [progression]="getItemProgress(item.contentItem)"
+                                    [inProgress]="inProgress"
+                                    [progressBackground]="progressBg"
+                                    [radius]="progressRadiusAudio"
+                                    [isDiscProgress]="true"
+                                    (onClick)="showPreview(item.contentItem)"
+                                >
+                                    <!-- <img
+                                        class="img-fluid"
+                                        src="{{assetsService.downloadCloud}}"
+                                    /> -->
+                                </lib-progress-ring>
+                            </div>
+                        
+                        </div>
+                        <div class="{{ isMobile ? '' : 'text-large text-wrap' }}">
+                            <span class="">{{
+                                isMobile ? (item.contentItem['name'] | truncate: truncateValue) : item.contentItem['name']
+                            }}</span>
+                        </div>
+                        <div>
+                            <img class="small-icon" src="{{assetsService.audioArtistIcon}}" />
+                            <span class="secondary-card-text" *ngIf="artistsMap">
+                                <small
+                                    >Artist:
+                                    {{
+                                        isMobile
+                                            ? (artistsMap[item.contentItem['artistId']] | truncate: truncateValue)
+                                            : artistsMap[item.contentItem['artistId']]
+                                    }}</small
+                                >
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-genres secondary-card-text" *ngIf="!isMobile && isAudioChannelSelected">
+                        <lib-tag-loader [item]="item.contentItem"></lib-tag-loader>
+                    </div>
+                    <div class="card-genres secondary-card-text" *ngIf="!isMobile && !isAudioChannelSelected">{{ getGenres(item.contentItem) }}</div>
+                    <div class="card-duration secondary-card-text" *ngIf="!isMobile">{{ getDuration(item.contentItem) }}</div>
+                    <div class="card-bpm text-nowrap secondary-card-text" *ngIf="!isMobile">
+                        {{ item.contentItem['bpm'] }} bpm
+                    </div>
+
+                    <!-- Show movie details button -->
+                    <div
+                        class="ml-auto d-flex align-items-center info-button-wrapper"
+                        [class.hidden]="!configService.isContentMode()"
+                    >
+                        <img
+                            *ngIf="!isProductTab"
+                            src="{{ assetsService.infoIcon }}"
+                            class="info-button"
+                            alt="Info"
+                            role="button"
+                            tabindex="0"
+                            (click)="showMovieDetails(item.contentItem.id, $event)"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </cdk-virtual-scroll-viewport>
+</div>
+
+<app-spinner *ngIf="disableUI" [loadingComponentText]="'Loading detail View'"></app-spinner>

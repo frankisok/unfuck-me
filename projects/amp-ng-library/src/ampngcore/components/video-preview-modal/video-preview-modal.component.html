@@ -1,0 +1,16 @@
+<div class="container video-preview-modal">
+  <img src="{{assetsService.closeIcon}}" class="close-button" style="float: right;" (click)="close()">
+
+  <div class="text-large">{{getName(contentItem.name)}}</div>
+
+  <iframe [src]="url" width="320" height="240" class="my-2" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+  <p class="text-dark">
+    Artist: {{ artistName }}
+    <br>
+    Duration: {{ duration }}
+    <!-- <br> -->
+    <!-- Location: {{ contentItem.runtimePath }} -->
+  </p>
+
+</div>

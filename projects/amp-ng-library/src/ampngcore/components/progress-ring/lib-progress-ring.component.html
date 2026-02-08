@@ -1,0 +1,58 @@
+<div class="circular-progress">
+  <ng-container *ngIf="!isDiscProgress; else discProgress">
+  <svg
+    class="progress-ring {{ disable ? 'disable' : '' }}"
+    [style.width]="widthHeight + 'px'"
+    [style.height]="widthHeight + 'px'"
+  >
+    <!-- Background circle -->
+    <circle
+      class="progress-ring__background"
+      [attr.cx]="circlePosition"
+      [attr.cy]="circlePosition"
+      [attr.r]="radius"
+      [attr.stroke-width]="progressBackground"
+    ></circle>
+
+    <!-- Progress circle -->
+    <circle
+      class="progress-ring__progress"
+      [attr.cx]="circlePosition"
+      [attr.cy]="circlePosition"
+      [attr.r]="radius"
+      [attr.stroke-width]="inProgress"
+      [attr.stroke-dasharray]="circleCircumference"
+      [attr.stroke-dashoffset]="getStrokeDashOffset()"
+    ></circle>
+  </svg>
+  </ng-container>
+  <ng-template #discProgress>
+    <svg
+      class="progress-ring"
+      [attr.width]="widthHeight"
+      [attr.height]="widthHeight"
+      [attr.viewBox]="'0 0 100 100'"
+    >
+      <!-- Background circle -->
+      <circle
+        class="progress-ring__background disc"
+        cx="50"
+        cy="50"
+        [attr.r]="radius"
+        [attr.stroke-width]="progressBackground"
+      ></circle>
+
+      <!-- Dynamic pie-shaped progress path -->
+      <path
+        class="progress-ring__progress path"
+        [attr.d]="getProgressPath()"
+      ></path>
+    </svg>
+  </ng-template>
+
+  <div class="progress-text">
+    <div class="play-control-play-stop {{ disable ? 'disable' : '' }} active">
+      <ng-content> </ng-content>
+    </div>
+  </div>
+</div>

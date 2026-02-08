@@ -1,0 +1,51 @@
+.date-input-container {
+  position: relative;
+  display: inline-block;
+}
+
+.input-group {
+  width: 90%;
+}
+
+.calendar-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 2;
+}
+
+.datepicker-container {
+  position: absolute;
+  left: 0;
+  z-index: 99;
+  background-color: white;
+  width: 232px;
+  
+  &.top {
+    bottom: 100%;  
+  }
+  &.bottom {
+    top: 100%;
+  }
+  &.left {
+    right: 100%;
+  }
+  &.right {
+    left: 100%;
+  }
+  
+}
+
+
+.btn-outline-secondary.calendar {
+  background-color: rgb(91, 91, 94);
+  border: none;
+}
+.btn-outline-secondary.calendar:hover {
+  opacity: 0.8;
+}
+.fa-calendar {
+  color: white;
+}

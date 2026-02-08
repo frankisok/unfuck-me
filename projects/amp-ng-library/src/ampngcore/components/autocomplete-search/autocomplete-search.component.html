@@ -1,0 +1,21 @@
+<div class="autocomplete-container">
+    <input
+        class="form-control"
+        type="text"
+        [formControl]="formControl"
+        placeholder="Start typing"
+        (focus)="onFocus()"
+        (input)="onInputChange()"
+    />
+    <div class="autocomplete-suggestions" *ngIf="showSuggestions && (filteredSuggestions | async)?.length > 0">
+        <div
+            class="suggestion-item"
+            *ngFor="let suggestion of filteredSuggestions | async"
+            (click)="selectSuggestion(suggestion)"
+        >
+            {{ suggestion }}
+        </div>
+    </div>
+
+    <div class="error-text" *ngIf="formControl.touched && formControl.hasError('invalidSuggestion')">Invalid {{name}}</div>
+</div>
