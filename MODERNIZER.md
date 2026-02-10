@@ -15,6 +15,20 @@ Convert all NgModule-based components, directives, and pipes to standalone, and 
 
 **Important:** Do NOT use the Angular CLI migration schematic. The migration must be done manually as follows:
 
+#### Step 0: Create a Feature Branch
+Before making any changes, create a new branch with a meaningful name that includes the model name you are running:
+
+```bash
+git checkout -b modernize/standalone-migration-<model-name>
+```
+
+For example, if running with `claude-3-opus`, use:
+```bash
+git checkout -b modernize/standalone-migration-claude-3-opus
+```
+
+All work for this pass should be committed to this branch.
+
 #### Step 1: Inventory All Modules
 1. Find all `.module.ts` files in the project
 2. For each module, document:
