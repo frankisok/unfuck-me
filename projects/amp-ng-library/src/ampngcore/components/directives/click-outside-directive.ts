@@ -2,7 +2,7 @@ import { Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, Ou
 
 @Directive({
     selector: '[appDynamicHostListener]',
-    standalone: false
+    standalone: true
 })
 /**
  * Handles dynamic host listeners

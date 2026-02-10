@@ -1,7 +1,8 @@
 
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ContentOwner, ContentType, MediaType } from '../../core';
 import { AMPState, StateService } from '../../services/state.service';
 import { EventBusService } from '../../services/event-bus.service';
@@ -12,7 +13,8 @@ import { LibraryConfigService } from '../../../library/library-config-service';
     templateUrl: './my-content-toggle-base.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./my-content-toggle-base.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgIf, TranslateModule]
 })
 export class MyContentToggleBaseComponent implements OnInit {
 

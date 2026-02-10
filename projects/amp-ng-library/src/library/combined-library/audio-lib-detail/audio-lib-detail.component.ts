@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import {
     FilteredItemsWithIndex,
     LibraryModalDelegate,
@@ -13,13 +14,15 @@ import { AudioLibraryDelegate } from '../audio-library.delegate';
 import { DAMObject } from '../../../ampngcore/types/dam-object.type';
 import { LibraryDetailHeaderDelegate } from '../library-detail-header.delegate';
 import { LibraryConfigService } from '../../library-config-service';
+import { VirtualScrollViewportComponent } from '../../../ampngcore/components/virtual-scroll-viewport/virtual-scroll-viewport.component';
 
 @Component({
     selector: 'amp-audio-lib-detail',
     templateUrl: './audio-lib-detail.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./audio-lib-detail.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgIf, NgTemplateOutlet, VirtualScrollViewportComponent]
 })
 export class AudioLibraryDetailComponent implements OnInit, VirtualScrollViewportDelegate {
     AUDIO_MEDIA_TYPE = MediaType.AUDIO;

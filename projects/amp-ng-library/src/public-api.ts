@@ -5,7 +5,6 @@
 // NB: IN ORDER TO KEEP IT CLEAN AND CONSIST, ONLY COMPONENT SHOULD BE EXPORTED IN THIS FILES, EVERYTHING ELSE SHOULD BE EXPORTED IN core/services/models
 
 // export core modules/interfaces/enums/models/services
-export * from './ampngcore/ampngcore.module';
 export * from './ampngcore/service';
 export * from './ampngcore/core';
 export * from './ampngcore/models';
@@ -21,7 +20,7 @@ export {ContentService, ContentServiceMethod} from './ampngcore/services/content
 // export library module/services
 export * from './library/library-component-service';
 export * from './library/library-config-service';
-export * from './library/library.module';
+// (NgModule exports removed in standalone migration)
 
 // export components
 // export * from '../../../backup/lib/amp-ng-library.component';

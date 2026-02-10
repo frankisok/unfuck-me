@@ -1,4 +1,7 @@
 import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
     ampOnDragDrop,
@@ -29,7 +32,8 @@ enum EReorderType {
     templateUrl: './master-view.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./master-view.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgFor, NgIf, NgStyle, FormsModule, TranslateModule]
 })
 export class MasterViewComponent extends UnSub implements OnInit, AfterContentInit, OnChanges {
 

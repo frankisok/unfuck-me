@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { UnSub } from '../../helpers/unsub.class';
 
 
@@ -15,7 +16,8 @@ import { UnSub } from '../../helpers/unsub.class';
         }
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgFor, NgIf, FormsModule]
 })
 export class GenericSelectComponent extends UnSub implements ControlValueAccessor {
 	@Input() items: Array<any>;

@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, isDevMode, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import {ListItem} from './models/list-item';
 import {MasterViewListItemEventDelegate} from './interfaces/master-view-list-item-event-delegate';
 import { ListItemIconConfigStates} from './models/list-item-config';
@@ -11,6 +13,7 @@ import { LibraryConfigService } from '../../../library/library-config-service';
 import { DelegateType } from './_enum/delegate-type';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { AMPAccount, Venue } from '../../models';
+import { SvgIconComponent } from '../../components/svg-icon/svg-icon.component';
 
 /**
  * @Note: This component should not use OnPush due to extensive calculations, 
@@ -21,7 +24,8 @@ import { AMPAccount, Venue } from '../../models';
     templateUrl: './master-view-list-item.component.html',
     // changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./master-view-list-item.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgFor, NgIf, NgStyle, CdkDrag, CdkDropList, CdkDropListGroup, SvgIconComponent]
 })
 export class MasterViewListItemComponent implements OnInit, OnChanges {
 

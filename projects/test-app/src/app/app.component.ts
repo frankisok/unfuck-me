@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { DamService, MediaType, StateService } from 'amp-ng-library';
 import { AppLibraryConfigService, RenditionService } from './app-library.service';
 import { Location } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [RouterOutlet, RouterLink, RouterLinkActive, TranslateModule]
 })
 export class AppComponent implements OnInit {
   title = 'test-app';

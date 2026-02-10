@@ -9,7 +9,7 @@ import { ToolBarAction } from '../master-view-list/generic-del-confirm/del-confi
     templateUrl: './generic-tool-bar.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./generic-tool-bar.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class GenericToolBarComponent extends UnSub implements OnInit {
 	config: ToolBarAction;

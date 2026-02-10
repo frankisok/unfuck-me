@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     templateUrl: 'amp-ng-library.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: [],
-    standalone: false
+    standalone: true
 })
 export class AmpNgLibraryComponent {
 

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ComponentRef, HostListener, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { LibraryConfigService, MobileMasterViewTabs } from '../../../library/library-config-service';
 
 @Component({
@@ -6,7 +7,8 @@ import { LibraryConfigService, MobileMasterViewTabs } from '../../../library/lib
     templateUrl: './mobile-nav-wrapper.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./mobile-nav-wrapper.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgIf]
 })
 export class MobileNavWrapperComponent implements OnInit {
 	@ViewChild('mobileMenuContainer', { read: ViewContainerRef, static: false }) mobileMenuContainer: ViewContainerRef
@@ -47,4 +49,3 @@ export class MobileNavWrapperComponent implements OnInit {
 	}
 
 }
-

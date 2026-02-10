@@ -1,5 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import {
     AbstractControl,
     ControlValueAccessor,
@@ -22,7 +23,8 @@ import { map, Observable, startWith } from 'rxjs';
         },
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [NgIf]
 })
 export class AutocompleteSearchComponent implements OnInit, ControlValueAccessor {
     @Input() suggestions: string[] = [];

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ViewEncapsulation, AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import { NgClass } from '@angular/common';
 import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,7 +9,8 @@ import { BehaviorSubject } from 'rxjs';
     styleUrls: ['./action-popover.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    standalone: false
+    standalone: true,
+    imports: [NgClass]
 })
 export class ActionPopoverComponent implements AfterViewInit {
 

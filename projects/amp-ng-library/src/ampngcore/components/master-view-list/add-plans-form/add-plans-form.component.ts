@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 import { AMPProductPlan } from '../../../models/product';
 import { AddPlanConfirmDelegate } from './add-plan-confirm.delegate';
 import { ListItem } from '../models/list-item';
@@ -9,7 +11,8 @@ import { MediaType } from '../../../enums/media-type';
     templateUrl: './add-plans-form.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./add-plans-form.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [FormsModule, NgIf]
 })
 export class AddPlansFormComponent implements OnInit {
     planName: string = '';

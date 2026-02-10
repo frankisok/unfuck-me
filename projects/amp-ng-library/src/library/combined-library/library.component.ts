@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentRef, ContentChild, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { NgClass, NgFor, NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
 import {
     AMPStatus,
     AudioLibraryArtistListItemFactory,
@@ -35,7 +36,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventBusService, LibraryAssetsService, SpinnerService, TrackingService } from '../../ampngcore/service';
 import { AMPContentItem, AMPProduct, Artist, Category, DownloadingItem, DownloadingMovie, ListItemConfig, Tag } from '../../ampngcore/models';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ProductFilterDelegate } from '../../ampngcore/components/product-filter/product-filter.delegate';
 import { AudioLibraryDelegate } from './audio-library.delegate';
 import { map, takeUntil } from 'rxjs/operators';
@@ -64,13 +65,51 @@ import { LocationStrategy } from '@angular/common';
 import { DamDelegate } from './dam-delegate';
 import { TagSelectionModalComponent } from '../../ampngcore/components/tag-selection-modal/tag-selection-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActionPopoverComponent } from '../../ampngcore/components/popovers/action-popover.component';
+import { AddContentFormComponent } from '../../ampngcore/components/crud-actions/add-content-form/add-content-form.component';
+import { EditContentFormComponent } from '../../ampngcore/components/crud-actions/edit-content-form/edit-content-form.component';
+import { MasterViewToolbarComponent } from '../../ampngcore/components/master-view-toolbar/master-view-toolbar.component';
+import { GenericToolBarComponent } from '../../ampngcore/components/generic-tool-bar/generic-tool-bar.component';
+import { MasterViewListComponent } from '../../ampngcore/components/master-view-list/master-view-list.component';
+import { MobileNavComponent } from '../../ampngcore/components-mobile/mobile-nav/mobile-nav.component';
+import { MobileNavWrapperComponent } from '../../ampngcore/components-mobile/mobile-nav-wrapper/mobile-nav-wrapper.component';
+import { MyContentToggleBaseComponent } from '../../ampngcore/components/my-content-toggle/my-content-toggle-base.component';
+import { MediaTypeToggleComponent } from '../../ampngcore/components/media-type-toggle/media-type-toggle.component';
+import { ProductFilterComponent } from '../../ampngcore/components/product-filter/product-filter.component';
+import { SpinnerComponent } from '../../ampngcore/components/spinner/spinner.component';
+import { AudioLibraryDetailComponent } from './audio-lib-detail/audio-lib-detail.component';
+import { VideoLibDetailComponent } from './video-lib-detail/video-lib-detail.component';
+import { LibraryActionMenuComponent } from '../library-action-menu/library-action-menu.component';
 
 @Component({
     selector: 'amp-library',
     templateUrl: './library.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./library.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [
+        NgClass,
+        NgFor,
+        NgIf,
+        NgStyle,
+        NgTemplateOutlet,
+        TranslateModule,
+        ActionPopoverComponent,
+        AddContentFormComponent,
+        EditContentFormComponent,
+        MasterViewToolbarComponent,
+        GenericToolBarComponent,
+        MasterViewListComponent,
+        MobileNavComponent,
+        MobileNavWrapperComponent,
+        MyContentToggleBaseComponent,
+        MediaTypeToggleComponent,
+        ProductFilterComponent,
+        SpinnerComponent,
+        AudioLibraryDetailComponent,
+        VideoLibDetailComponent,
+        LibraryActionMenuComponent,
+    ]
 })
 export class LibraryComponent
     extends UnSub

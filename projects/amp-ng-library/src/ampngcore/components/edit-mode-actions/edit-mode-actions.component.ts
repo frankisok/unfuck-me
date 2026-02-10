@@ -1,5 +1,6 @@
 
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, NgZone, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
 import { EditModeController, EditModeState } from '../../helpers/edit-mode/edit-mode-controller';
 import { isDAMObject } from '../../util/type-guards';
 import { UnSub } from '../../core';
@@ -11,7 +12,8 @@ import { LibraryAssetsService } from '../../service';
     templateUrl: './edit-mode-actions.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./edit-mode-actions.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgIf]
 })
 export class EditModeActionsComponent extends UnSub implements OnInit, OnChanges {
     static disabled = 'disabled';

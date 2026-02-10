@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { NgClass, NgIf, NgTemplateOutlet } from '@angular/common';
 import { AMPContentItem, AMPProduct, Category, DownloadingItem } from '../../../ampngcore/models';
 import {
     FilteredItemsWithIndex,
@@ -13,13 +14,15 @@ import {
 import { DAMObject } from '../../../ampngcore/types/dam-object.type';
 import { LibraryDetailHeaderDelegate } from '../library-detail-header.delegate';
 import { AudioLibraryDelegate } from '../audio-library.delegate';
+import { VirtualScrollViewportComponent } from '../../../ampngcore/components/virtual-scroll-viewport/virtual-scroll-viewport.component';
 
 @Component({
     selector: 'amp-video-lib-detail',
     templateUrl: './video-lib-detail.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./video-lib-detail.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgIf, NgTemplateOutlet, VirtualScrollViewportComponent]
 })
 export class VideoLibDetailComponent implements VirtualScrollViewportDelegate {
     VIDEO_MEDIA_TYPE = MediaType.VIDEO;

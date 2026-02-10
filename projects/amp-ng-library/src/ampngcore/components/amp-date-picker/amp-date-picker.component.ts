@@ -1,8 +1,11 @@
 
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgbDateStruct, NgbCalendar, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import {UnSub} from '../../helpers/unsub.class';
 import {memo} from '../../helpers/generic-memo';
+import { AmpDynamicHostListenerDirective } from '../directives/click-outside-directive';
 
 
 type ContainerPlacement = 'top' | 'bottom' | 'left' | 'right';
@@ -12,7 +15,8 @@ type ContainerPlacement = 'top' | 'bottom' | 'left' | 'right';
     templateUrl: './amp-date-picker.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./amp-date-picker.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgIf, FormsModule, AmpDynamicHostListenerDirective]
 })
 /**
  * Component for an interactive date picker.

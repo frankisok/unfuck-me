@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -7,7 +8,8 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
     templateUrl: './svg-icon.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrl: './svg-icon.component.scss',
-    standalone: false
+    standalone: true,
+    imports: [NgClass]
 })
 export class SvgIconComponent implements OnInit {
 

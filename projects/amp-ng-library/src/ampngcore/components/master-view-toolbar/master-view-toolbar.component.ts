@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy,Component, Input} from '@angular/core';
+import { NgClass } from '@angular/common';
 import {MasterViewToolbarAction} from './master-view-toolbar-action';
 import { ListItem } from '../../core';
 
@@ -7,7 +8,8 @@ import { ListItem } from '../../core';
     templateUrl: './master-view-toolbar.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./master-view-toolbar.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass]
 })
 export class MasterViewToolbarComponent {
     @Input() toolbarActions: Array<MasterViewToolbarAction>;

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { NgClass, NgIf } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, } from '@angular/platform-browser';
 import { ampEncodeURI, memo, reIndex, UnSub } from '../../core';
 import { LibraryConfigService } from '../../../library/library-config-service';
@@ -7,7 +8,8 @@ import { LibraryConfigService } from '../../../library/library-config-service';
     templateUrl: './mobile-song-preview.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./mobile-song-preview.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgIf]
 })
 export class MobileSongPreviewComponent extends UnSub implements OnInit {
 	@ViewChild('audio') audioRef: ElementRef<HTMLAudioElement>;

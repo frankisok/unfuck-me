@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { LibraryConfigService, MobileMasterViewTabs } from 'amp-ng-library';
 import { AppLibraryConfigService } from '../app-library.service';
 import { Router } from '@angular/router';
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
     selector: 'lib-mobile-master-view',
     templateUrl: './mobile-master-view.component.html',
     styleUrls: ['./mobile-master-view.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgFor]
 })
 export class MobileMasterViewComponent implements OnInit {
 

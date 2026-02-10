@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { LibraryAssetsService } from '../../service';
 import { MediaType } from '../../enums/media-type';
 
@@ -6,7 +7,8 @@ import { MediaType } from '../../enums/media-type';
     selector: 'lib-progress-ring',
     templateUrl: './lib-progress-ring.component.html',
     styleUrl: './lib-progress-ring.component.scss',
-    standalone: false
+    standalone: true,
+    imports: [NgIf]
 })
 export class LibProgressRingComponent {
 	

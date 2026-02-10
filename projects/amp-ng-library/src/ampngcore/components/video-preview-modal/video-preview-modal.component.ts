@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl, } from '@angular/platform-browser';
 import { ampEncodeURI, memo, reIndex } from '../../core';
@@ -10,7 +11,8 @@ import { LibraryAssetsService } from '../../service';
     templateUrl: './video-preview-modal.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./video-preview-modal.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass]
 })
 export class VideoPreviewModalComponent implements OnInit {
 

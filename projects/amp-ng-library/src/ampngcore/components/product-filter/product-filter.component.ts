@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy,Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { NgClass, NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { LibraryAssetsService, ProductFilterService, ProductService } from '../../service';
 import { MediaType, ProductType } from '../../core';
@@ -17,7 +19,8 @@ import { LibraryConfigService } from '../../../library/library-config-service';
     templateUrl: './product-filter.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./product-filter.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgFor, NgIf, FormsModule]
 })
 export class ProductFilterComponent implements OnInit {
     unsubscribe$ = new Subject<void>()

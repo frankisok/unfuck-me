@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { ContentService } from '../../../../services/content.service';
 
 @Component({
@@ -7,7 +8,8 @@ import { ContentService } from '../../../../services/content.service';
     <div *ngIf="loading">Loading...</div>
     <div *ngIf="!loading" class="d-inline">{{ genreList }}</div>
   `,
-  standalone: false
+  standalone: true,
+  imports: [NgIf]
 })
 
 export class TagLoaderComponent implements OnInit, OnChanges {

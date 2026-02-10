@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { ListItem, MasterViewOpenTreeEventDelegate } from '../../core';
 import { LibraryConfigService } from '../../../library/library-config-service';
 
@@ -7,7 +8,8 @@ import { LibraryConfigService } from '../../../library/library-config-service';
     templateUrl: './mobile-nav.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./mobile-nav.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgFor, NgIf]
 })
 export class MobileNavComponent implements OnInit {
     @Input() listItems: Array<ListItem>;

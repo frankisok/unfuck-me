@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Location } from '@angular/common';
+import { Location, NgClass, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
 import { ContentOwner, MediaType, memo, UnSub } from '../../core';
 import { StateService, AMPState } from '../../services/state.service';
 import { EventBusService } from '../../services/event-bus.service';
@@ -14,7 +15,8 @@ import { LibraryAssetsService } from '../../services/assets.service';
 	templateUrl: './library-toggle.component.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	styleUrls: ['library-toggle.component.scss'],
-	standalone: false
+	standalone: true,
+	imports: [NgClass, NgIf, FormsModule, TranslateModule]
 })
 export class LibraryToggleComponent extends UnSub implements OnInit {
 

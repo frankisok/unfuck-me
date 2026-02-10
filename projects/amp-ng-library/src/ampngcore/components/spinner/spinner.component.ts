@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { LibraryConfigService } from '../../../library/library-config-service';
 @Component({
     selector: 'app-spinner',
     templateUrl: './spinner.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./spinner.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgIf]
 })
 export class SpinnerComponent implements OnInit {
 

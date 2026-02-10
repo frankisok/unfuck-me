@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { breadCrumbSeparator, ListItem } from '../../../core';
 import { LibraryConfigService } from '../../../../library/library-config-service';
 @Component({
@@ -6,7 +7,8 @@ import { LibraryConfigService } from '../../../../library/library-config-service
     templateUrl: './mobile-nav-card-items.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./mobile-nav-card-items.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgClass, NgFor, NgIf]
 })
 export class MobileNavCardItemsComponent implements OnInit {
 

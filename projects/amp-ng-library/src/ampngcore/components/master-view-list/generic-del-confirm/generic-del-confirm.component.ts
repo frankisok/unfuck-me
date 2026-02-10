@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { DelContentConfirmDelegate } from './generic-del-confirm.delegate';
 import { DelConfirmProps, DelConfirmType } from './del-confirm-type';
 
@@ -19,7 +20,8 @@ import { DelConfirmProps, DelConfirmType } from './del-confirm-type';
     templateUrl: './generic-del-confirm.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./generic-del-confirm.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgIf]
 })
 export class GenericDelConfirmComponent implements OnInit {
 

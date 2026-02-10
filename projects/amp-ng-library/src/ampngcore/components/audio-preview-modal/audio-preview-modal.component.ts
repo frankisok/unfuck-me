@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ampEncodeURI, MEDIA_DIRECTORY, memo, PUBLIC_HTML_SERVER, reIndex } from '../../core';
@@ -9,7 +10,8 @@ import { LibraryAssetsService } from '../../service';
     templateUrl: './audio-preview-modal.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./audio-preview-modal.component.scss'],
-    standalone: false,
+    standalone: true,
+    imports: [NgClass],
 })
 export class AudioPreviewModalComponent implements OnInit {
 

@@ -10,8 +10,9 @@ import {
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
+import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
 import { parse, stringify } from 'lossless-json';
-import { ampEncodeURI, FilteredItemsWithIndex, getImgForContentItem, MEDIA_DIRECTORY, PUBLIC_HTML_SERVER } from '../../core';
+import { ampEncodeURI, FilteredItemsWithIndex, getImgForContentItem, MEDIA_DIRECTORY, PUBLIC_HTML_SERVER, TruncatePipe } from '../../core';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { VideoPreviewModalComponent } from '../video-preview-modal/video-preview-modal.component';
 import { AudioPreviewModalComponent } from '../audio-preview-modal/audio-preview-modal.component';
@@ -34,16 +35,39 @@ import { DAMObject } from '../../types/dam-object.type';
 import { isProductPlan } from '../../util/type-guards';
 import { getEncodedAMPPath } from '../../helpers/core-thumbnail';
 import { DisableActions } from '../../interfaces/disabled-actions';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { CdkDragDrop, CdkDragPlaceholder, CdkDragStart, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkDragDrop, CdkDragPlaceholder, CdkDragStart, CdkDropList, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgOptimizedImage } from '@angular/common';
+import { TagLoaderComponent } from './virtual-scroll-genres/tag-loader/tag-loader.component';
+import { LibProgressRingComponent } from '../progress-ring/lib-progress-ring.component';
+import { EditModeActionsComponent } from '../edit-mode-actions/edit-mode-actions.component';
+import { LibraryToggleComponent } from '../library-toggle/library-toggle.component';
 
 @Component({
     selector: 'app-virtual-scroll-viewport',
     templateUrl: './virtual-scroll-viewport.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./virtual-scroll-viewport.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [
+        NgClass,
+        NgFor,
+        NgIf,
+        NgStyle,
+        FormsModule,
+        TranslateModule,
+        ScrollingModule,
+        DragDropModule,
+        NgOptimizedImage,
+        TagLoaderComponent,
+        LibProgressRingComponent,
+        EditModeActionsComponent,
+        LibraryToggleComponent,
+        TruncatePipe,
+    ]
 })
 export class VirtualScrollViewportComponent extends UnSub implements OnInit, OnChanges, DragDroppableComponent {
     static options: NgbModalOptions = {

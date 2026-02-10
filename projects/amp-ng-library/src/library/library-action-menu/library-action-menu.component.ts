@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { UnSub } from '../../ampngcore/core';
 
 import { LibraryConfigService } from '../library-config-service';
@@ -9,7 +10,8 @@ import { LibraryConfigService } from '../library-config-service';
     templateUrl: './library-action-menu.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./library-action-menu.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgIf]
 })
 
 export class LibraryActionMenuComponent extends UnSub implements OnInit {
@@ -41,4 +43,3 @@ export class LibraryActionMenuComponent extends UnSub implements OnInit {
     }
 
 }
-

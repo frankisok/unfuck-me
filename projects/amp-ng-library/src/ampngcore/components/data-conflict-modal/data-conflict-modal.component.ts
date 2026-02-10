@@ -1,5 +1,6 @@
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +8,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     templateUrl: './data-conflict-modal.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./data-conflict-modal.component.scss'],
-    standalone: false
+    standalone: true,
+    imports: [NgIf]
 })
 export class DataConflictModalComponent implements OnInit {
     constructor(private modal: NgbActiveModal) {}
